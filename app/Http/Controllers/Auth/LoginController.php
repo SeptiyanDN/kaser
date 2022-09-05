@@ -7,6 +7,7 @@ use App\Models\Tenant;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -24,10 +25,10 @@ class LoginController extends Controller
         
         if(Auth::attempt($credentials)) {
             $request->session()->regenerate();
-             
-            $tenant = Tenant::get()->first();
+            $tenantID = DB::table('tenant_user')->where('user_id',auth()->user()->id)->first();
+            $tenant= DB::table('tenants')->where('id',$tenantID->tenant_id)->first();
         $mainDomain = str_replace('://' , '://' . $tenant->subdomain . '.' , config('app.url'));
-        return redirect ($mainDomain);
+        return redirect ($mainDomain)->with('session','Berhasil Login');
         };
         
         }

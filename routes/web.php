@@ -6,7 +6,6 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\TenantController;
-use App\Http\Controllers\UsahaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +35,6 @@ Route::get('/register-tenant',[RegisterController::class,'registrasiTenant']);
 
 Route::get('/cabang-outlet',[OutletController::class,'index'])->name('cabang-outlet');
 Route::get('/cabang-outlet/json',[OutletController::class,'json'])->name('json');
-Route::post('/cabang-outlet',[UsahaController::class,'store'])->name('create-outlet');
+Route::post('/cabang-outlet',[OutletController::class,'store'])->name('create-outlet');
 
 Route::get('/tenant/change/{tenantID}',[TenantController::class, 'changeTenant'])->name('tenants.change');

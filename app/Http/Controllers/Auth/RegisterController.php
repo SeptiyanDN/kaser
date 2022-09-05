@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 
 
@@ -18,10 +19,10 @@ class RegisterController extends Controller
 
     public function logout(Request $request)
     {
+        Session::flush();
         Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerate();
-        return redirect('/login');
+
+        return redirect(config('app.url'))->with('session','Berhasil Logout');
     }
 
     public function register(){

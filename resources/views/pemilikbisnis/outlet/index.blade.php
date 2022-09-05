@@ -27,8 +27,8 @@ Daftar Cabang Outlet
                     <table class="table table-striped table-bordered table-hover" id="datatables1">
                         <thead>
                         <tr>
-                            <th>Nama Usaha</th>
-                            <th>Kategori Usaha</th>
+                            <th>Nama Cabang</th>
+                            <th>Kategori</th>
                             <th>Alamat</th>
                             <th>Aksi</th>
                         </tr>
@@ -55,9 +55,9 @@ Daftar Cabang Outlet
           <form method="POST" action="{{route('create-outlet')}}">
             @csrf
             <div class="form-group">
-                <input name="nama_usaha" id="nama_usaha" type="text" class="form-control" placeholder="nama_usaha" required="">
+                <input name="nama_outlet" id="nama_outlet" type="text" class="form-control" placeholder="nama_outlet" required="">
             </div><div class="form-group">
-                <input name="kategori_usaha" id="kategori_usaha" type="text" class="form-control" placeholder="kategori_usaha" required="">
+                <input name="kategori" id="kategori" type="text" class="form-control" placeholder="kategori" required="">
             </div><div class="form-group">
                 <input name="alamat" id="alamat" type="text" class="form-control" placeholder="alamat" required="">
             </div>
@@ -83,8 +83,8 @@ Daftar Cabang Outlet
                     url: "{{route('json')}}"
                 },
                 columns: [
-                    {data :'nama_usaha',name:'nama_usaha'},
-                    {data :'kategori_usaha', name:'kategori_usaha'},
+                    {data :'nama_outlet',name:'nama_outlet'},
+                    {data :'kategori', name:'kategori'},
                     {data :'alamat', name:'alamat'},
                     {data :'aksi', name:'aksi'}
                 ],

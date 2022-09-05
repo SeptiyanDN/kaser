@@ -47,7 +47,13 @@ class OutletController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Outlet::create([
+            'nama_outlet' => $request->nama_outlet,
+            'kategori' => $request -> kategori,
+            'alamat' => $request->alamat,
+        ]);
+
+        return redirect()->route('cabang-outlet');
     }
 
     /**
