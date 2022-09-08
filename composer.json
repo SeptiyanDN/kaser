@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",
         "opcodesio/log-viewer": "^1.2",
+        "realrashid/sweet-alert": "^5.1",
         "yajra/laravel-datatables-oracle": "10.0"
     },
     "require-dev": {

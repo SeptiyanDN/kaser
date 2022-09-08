@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\Model;
 class Outlet extends Model
 {
     use HasFactory, FilterByTenant;
-    protected $fillable = ['nama_outlet','kategori','alamat'];
+    protected $fillable = ['nama_outlet','telepon','alamat','kelurahan'];
 }

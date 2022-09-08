@@ -9,6 +9,7 @@
 <html>
 
 <head>
+@include('sweetalert::alert')
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,12 +21,14 @@
     <link href={{ asset("assets/css/bootstrap.min.css")}} rel="stylesheet">
     <link href={{ asset("assets/font-awesome/css/font-awesome.css")}} rel="stylesheet">
     <link href={{ asset("assets/css/plugins/dataTables/datatables.min.css")}} rel="stylesheet">
-    <link href={{ asset("assets/css/plugins/sweetalert/sweetalert.css")}} rel="stylesheet">
     <link href={{ asset("assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css")}} rel="stylesheet">
     <link href={{ asset("assets/css/plugins/toastr/toastr.min.css")}} rel="stylesheet">
     <!-- Toastr style -->
     <link href={{ asset("assets/css/plugins/toastr/toastr.min.css")}} rel="stylesheet">
 
+    <!-- Sweetalert -->
+    <link href={{ asset("assets/css/plugins/sweetalert/sweetalert.css")}} rel="stylesheet">    
+    
     {{-- Data Table --}}
     <link href={{ asset("assets/css/plugins/dataTables/datatables.min.css")}} rel="stylesheet">
 
@@ -36,8 +39,7 @@
     <link href={{ asset("assets/css/animate.css")}} rel="stylesheet">
     <link href={{ asset("assets/css/style.css")}} rel="stylesheet">    
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
-
+    
     @stack('css')
 
 </head>
@@ -72,6 +74,7 @@
     </div>
 
     <!-- Mainly scripts -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src={{ asset("assets/js/jquery-3.1.1.min.js")}}></script>
     <script src={{ asset("assets/js/popper.min.js")}}></script>
     <script src={{ asset("assets/js/bootstrap.min.js")}}></script>
@@ -80,8 +83,8 @@
 
     <script src={{ asset("assets/js/plugins/dataTables/datatables.min.js")}}></script>
     <script src={{ asset("assets/js/validator.min.js")}}></script>
-    <script src={{ asset("assets/js/plugins/sweetalert/sweetalert.min.js")}}></script>
 
+    <script src="{{ asset('js/plugins/sweetalert/sweetalert.min.js')}}" rel="stylesheet" type="text/css"></script>
     <!-- Flot -->
     <script src={{ asset("assets/js/plugins/flot/jquery.flot.js")}}></script>
     <script src={{ asset("assets/js/plugins/flot/jquery.flot.tooltip.min.js")}}></script>
@@ -125,9 +128,22 @@
     <!-- Sparkline demo data  -->
     <script src={{ asset("assets/js/demo/sparkline-demo.js")}}></script>
 
+    <!-- Moris Chart -->
+    
+    <script src={{asset("assets/js/plugins/morris/raphael-2.1.0.min.js")}}></script>
+    <script src={{asset("assets/js/plugins/morris/morris.js")}}></script>
+
+     <!-- Chartist -->
+     <script src={{asset("assets/js/plugins/chartist/chartist.min.js")}}></script>
+
     {{-- Data Table --}}
     <script src={{ asset("assets/js/plugins/dataTables/datatables.min.js")}}></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(function(){
+        $('.js-example-basic-single').select2();
+        })
+    </script>
     @stack('scripts')
 </body>
 

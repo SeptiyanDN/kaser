@@ -19,10 +19,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/testingrole',function(){
-    $user = request()->user();
-    $user->revokePermission('tambah outlet');
-});
 Route::get('/',[HomeController::class,'index'])->middleware('auth');
 
 
@@ -36,5 +32,11 @@ Route::get('/register-tenant',[RegisterController::class,'registrasiTenant']);
 Route::get('/cabang-outlet',[OutletController::class,'index'])->name('cabang-outlet');
 Route::get('/cabang-outlet/json',[OutletController::class,'json'])->name('json');
 Route::post('/cabang-outlet',[OutletController::class,'store'])->name('create-outlet');
+Route::get('/cabang-outlet/{id}',[OutletController::class,'show'])->name('update-outlet');
+Route::put('/cabang-outlet/{id}',[OutletController::class,'update']);;
+Route::delete('/cabang-outlet/{id}',[OutletController::class,'destroy'])->name('remove-outlet');
+Route::post('/ajax-autocomplete-search', [OutletController::class, 'selectSearch'])->name('ajax-autocomplete-search');
+
+
 
 Route::get('/tenant/change/{tenantID}',[TenantController::class, 'changeTenant'])->name('tenants.change');

@@ -3,7 +3,7 @@
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element"> <span>
-                        <img alt="image" class="img" src="https://krenz-snack-751901.qasir.id/assets/images/v2/logo.png" />
+                        <img alt="image" class="img" width="175" src={{asset("assets/logo.png")}} />
                          </span>
                     
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -118,7 +118,6 @@
             <li>
                 <a href="/cabang-outlet"><i class="fa fa-diamond"></i> <span class="nav-label">Pelanggan</span></a>
             </li>
-            <li class="divider"></li>
         </ul>
 
     </div>
