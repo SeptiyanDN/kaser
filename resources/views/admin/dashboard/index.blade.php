@@ -4,186 +4,289 @@ Dashboard CMS Admin
 @endsection
 
 @section('content')
-
 <div class="row">
-<div class="col-lg-6">
-        <div class="ibox ">
-            <div class="ibox-title">
-                <h5>Pie </h5>
-            </div>
-            <div class="ibox-content">
-                <div>
-                    <canvas id="doughnutChart" height="140"></canvas>
-                </div>
-            </div>
-        </div>
+    <div class="col-lg-3 col-sm-6 col-12">
+    <div class="dash-widget">
+    <div class="dash-widgetimg">
+    <span><img src="assets/img/icons/dash1.svg" alt="img"></span>
     </div>
-    <div class="col-lg-3">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <span class="label label-success pull-right">Bulan ini</span>
-                <h5>Total Penjualan</h5>
-            </div>
-            <div class="ibox-content">
-                <h1 class="no-margins">Rp. 1.000.000</h1>
-                <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
-                <small>Lihat Detail</small>
-            </div>
-        </div>
+    <div class="dash-widgetcontent">
+    <h5>$<span class="counters" data-count="307144.00">$307,144.00</span></h5>
+    <h6>Total Purchase Due</h6>
     </div>
-    <div class="col-lg-3">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <span class="label label-info pull-right">Bulan ini</span>
-                <h5>Total Keuntungan</h5>
-            </div>
-            <div class="ibox-content">
-                <h1 class="no-margins">Rp. 2.750.000</h1>
-                <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
-                <small>Lihat Detail</small>
-            </div>
-        </div>
     </div>
-    <div class="col-lg-3">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <span class="label label-primary pull-right">Bulan ini</span>
-                <h5>Total Transaksi</h5>
-            </div>
-            <div class="ibox-content">
-                <h1 class="no-margins">210</h1>
-                <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
-                <small>Lihat Detail</small>
-            </div>
-        </div>
     </div>
-    <div class="col-lg-3">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <span class="label label-danger pull-right">Bulan ini</span>
-                <h5>Produk terjual</h5>
-            </div>
-            <div class="ibox-content">
-                <h1 class="no-margins">15</h1>
-                <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
-                <small>Lihat Detail</small>
-            </div>
-        </div>
-</div>
-
-                <div class="col-lg-6">
-                    <div class="ibox ">
-                        <div class="ibox-title">
-                            <h5>Donut Chart Example</h5>
-                        </div>
-                        <div class="ibox-content">
-                            <div id="morris-donut-chart" height="140" ></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="widget red-bg p-lg text-center">
-                                <div class="m-b-md">
-                                    <i class="fa fa-bell fa-4x"></i>
-                                    <h1 class="m-xs">47</h1>
-                                    <h3 class="font-bold no-margins">
-                                        Notification
-                                    </h3>
-                                    <small>We detect the error.</small>
-                                </div>
-                            </div>
-                    </div>
-            <div class="col-lg-3">
-                <div class="widget navy-bg p-lg no-padding">
-                    <div class="p-m">
-                        <h1 class="m-xs">$ 1,540</h1>
-
-                        <h3 class="font-bold no-margins">
-                            Annual income
-                        </h3>
-                        <small>Income form project Alpha.</small>
-                    </div>
-                    <div class="flot-chart">
-                        <div class="flot-chart-content" id="flot-chart1"></div>
-                    </div>
-                </div>
-            </div>  
-            
+    <div class="col-lg-3 col-sm-6 col-12">
+    <div class="dash-widget dash1">
+    <div class="dash-widgetimg">
+    <span><img src="assets/img/icons/dash2.svg" alt="img"></span>
     </div>
-            
+    <div class="dash-widgetcontent">
+    <h5>$<span class="counters" data-count="4385.00">$4,385.00</span></h5>
+    <h6>Total Sales Due</h6>
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-3 col-sm-6 col-12">
+    <div class="dash-widget dash2">
+    <div class="dash-widgetimg">
+    <span><img src="assets/img/icons/dash3.svg" alt="img"></span>
+    </div>
+    <div class="dash-widgetcontent">
+    <h5>$<span class="counters" data-count="385656.50">385,656.50</span></h5>
+    <h6>Total Sale Amount</h6>
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-3 col-sm-6 col-12">
+    <div class="dash-widget dash3">
+    <div class="dash-widgetimg">
+    <span><img src="assets/img/icons/dash4.svg" alt="img"></span>
+    </div>
+    <div class="dash-widgetcontent">
+    <h5>$<span class="counters" data-count="40000.00">400.00</span></h5>
+    <h6>Total Sale Amount</h6>
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-3 col-sm-6 col-12 d-flex">
+    <div class="dash-count">
+    <div class="dash-counts">
+    <h4>100</h4>
+    <h5>Customers</h5>
+    </div>
+    <div class="dash-imgs">
+    <i data-feather="user"></i>
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-3 col-sm-6 col-12 d-flex">
+    <div class="dash-count das1">
+    <div class="dash-counts">
+    <h4>100</h4>
+    <h5>Suppliers</h5>
+    </div>
+    <div class="dash-imgs">
+    <i data-feather="user-check"></i>
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-3 col-sm-6 col-12 d-flex">
+    <div class="dash-count das2">
+    <div class="dash-counts">
+    <h4>100</h4>
+    <h5>Purchase Invoice</h5>
+    </div>
+    <div class="dash-imgs">
+    <i data-feather="file-text"></i>
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-3 col-sm-6 col-12 d-flex">
+    <div class="dash-count das3">
+    <div class="dash-counts">
+    <h4>105</h4>
+    <h5>Sales Invoice</h5>
+    </div>
+    <div class="dash-imgs">
+    <i data-feather="file"></i>
+    </div>
+    </div>
+    </div>
+    </div>
 
-
-
-
-
+    <div class="row">
+    <div class="col-lg-7 col-sm-12 col-12 d-flex">
+    <div class="card flex-fill">
+    <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+    <h5 class="card-title mb-0">Purchase & Sales</h5>
+    <div class="graph-sets">
+    <ul>
+    <li>
+    <span>Sales</span>
+    </li>
+    <li>
+    <span>Purchase</span>
+    </li>
+    </ul>
+    <div class="dropdown">
+    <button class="btn btn-white btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+    2022 <img src="assets/img/icons/dropdown.svg" alt="img" class="ms-2">
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <li>
+    <a href="javascript:void(0);" class="dropdown-item">2022</a>
+    </li>
+    <li>
+    <a href="javascript:void(0);" class="dropdown-item">2021</a>
+    </li>
+    <li>
+    <a href="javascript:void(0);" class="dropdown-item">2020</a>
+    </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    <div class="card-body">
+    <div id="sales_charts"></div>
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-5 col-sm-12 col-12 d-flex">
+    <div class="card flex-fill">
+    <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+    <h4 class="card-title mb-0">Recently Added Products</h4>
+    <div class="dropdown">
+    <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false" class="dropset">
+    <i class="fa fa-ellipsis-v"></i>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <li>
+    <a href="productlist.html" class="dropdown-item">Product List</a>
+    </li>
+    <li>
+    <a href="addproduct.html" class="dropdown-item">Product Add</a>
+    </li>
+    </ul>
+    </div>
+    </div>
+    <div class="card-body">
+    <div class="table-responsive dataview">
+    <table class="table datatable ">
+    <thead>
+    <tr>
+    <th>Sno</th>
+    <th>Products</th>
+    <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td>1</td>
+    <td class="productimgname">
+    <a href="productlist.html" class="product-img">
+    <img src="assets/img/product/product22.jpg" alt="product">
+    </a>
+    <a href="productlist.html">Apple Earpods</a>
+    </td>
+    <td>$891.2</td>
+    </tr>
+    <tr>
+    <td>2</td>
+    <td class="productimgname">
+    <a href="productlist.html" class="product-img">
+    <img src="assets/img/product/product23.jpg" alt="product">
+    </a>
+    <a href="productlist.html">iPhone 11</a>
+    </td>
+    <td>$668.51</td>
+    </tr>
+    <tr>
+    <td>3</td>
+    <td class="productimgname">
+    <a href="productlist.html" class="product-img">
+    <img src="assets/img/product/product24.jpg" alt="product">
+    </a>
+    <a href="productlist.html">samsung</a>
+    </td>
+    <td>$522.29</td>
+    </tr>
+     <tr>
+    <td>4</td>
+    <td class="productimgname">
+    <a href="productlist.html" class="product-img">
+    <img src="assets/img/product/product6.jpg" alt="product">
+    </a>
+    <a href="productlist.html">Macbook Pro</a>
+    </td>
+    <td>$291.01</td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="card mb-0">
+    <div class="card-body">
+    <h4 class="card-title">Expired Products</h4>
+    <div class="table-responsive dataview">
+    <table class="table datatable ">
+    <thead>
+    <tr>
+    <th>SNo</th>
+    <th>Product Code</th>
+    <th>Product Name</th>
+    <th>Brand Name</th>
+    <th>Category Name</th>
+    <th>Expiry Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td>1</td>
+    <td><a href="javascript:void(0);">IT0001</a></td>
+    <td class="productimgname">
+    <a class="product-img" href="productlist.html">
+    <img src="assets/img/product/product2.jpg" alt="product">
+    </a>
+    <a href="productlist.html">Orange</a>
+    </td>
+    <td>N/D</td>
+    <td>Fruits</td>
+    <td>12-12-2022</td>
+    </tr>
+    <tr>
+    <td>2</td>
+    <td><a href="javascript:void(0);">IT0002</a></td>
+    <td class="productimgname">
+    <a class="product-img" href="productlist.html">
+    <img src="assets/img/product/product3.jpg" alt="product">
+    </a>
+    <a href="productlist.html">Pineapple</a>
+    </td>
+    <td>N/D</td>
+    <td>Fruits</td>
+    <td>25-11-2022</td>
+    </tr>
+    <tr>
+    <td>3</td>
+    <td><a href="javascript:void(0);">IT0003</a></td>
+    <td class="productimgname">
+    <a class="product-img" href="productlist.html">
+    <img src="assets/img/product/product4.jpg" alt="product">
+    </a>
+    <a href="productlist.html">Stawberry</a>
+    </td>
+    <td>N/D</td>
+    <td>Fruits</td>
+    <td>19-11-2022</td>
+    </tr>
+    <tr>
+    <td>4</td>
+    <td><a href="javascript:void(0);">IT0004</a></td>
+    <td class="productimgname">
+    <a class="product-img" href="productlist.html">
+    <img src="assets/img/product/product5.jpg" alt="product">
+    </a>
+    <a href="productlist.html">Avocat</a>
+    </td>
+    <td>N/D</td>
+    <td>Fruits</td>
+    <td>20-11-2022</td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
 @endsection
+
 @push('scripts')
-
 <script>
-        var d1 = [[1262304000000, 6], [1264982400000, 3057], [1267401600000, 20434], [1270080000000, 31982], [1272672000000, 26602], [1275350400000, 27826], [1277942400000, 24302], [1280620800000, 24237], [1283299200000, 21004], [1285891200000, 12144], [1288569600000, 10577], [1291161600000, 10295]];
-            var d2 = [[1262304000000, 5], [1264982400000, 200], [1267401600000, 1605], [1270080000000, 6129], [1272672000000, 11643], [1275350400000, 19055], [1277942400000, 30062], [1280620800000, 39197], [1283299200000, 37000], [1285891200000, 27000], [1288569600000, 21000], [1291161600000, 17000]];
-
-            var data1 = [
-                { label: "Data 1", data: d1, color: '#17a084'},
-                { label: "Data 2", data: d2, color: '#127e68' }
-            ];
-            $.plot($("#flot-chart1"), data1, {
-                xaxis: {
-                    tickDecimals: 0
-                },
-                series: {
-                    lines: {
-                        show: true,
-                        fill: true,
-                        fillColor: {
-                            colors: [{
-                                opacity: 1
-                            }, {
-                                opacity: 1
-                            }]
-                        }
-                    },
-                    points: {
-                        width: 0.1,
-                        show: false
-                    }
-                },
-                grid: {
-                    show: false,
-                    borderWidth: 0
-                },
-                legend: {
-                    show: false
-                }
-            });
+    $(function(){
+        ('.datatable').DataTable()
+    })
 </script>
-<script>
-     var doughnutData = {
-        labels: ["Penjualan","Pembelian","Kas bon" ],
-        datasets: [{
-            data: [300,50,100],
-            backgroundColor: ["#E80F88","#FF7F3F","#277BC0"]
-        }],
-        
-    } ;
-
-
-    var doughnutOptions = {
-        responsive: true
-    };
- var ctx4 = document.getElementById("doughnutChart").getContext("2d");
-    new Chart(ctx4, {type: 'doughnut', data: doughnutData, options:doughnutOptions});
-</script>
-
-<script>
-     Morris.Donut({
-        element: 'morris-donut-chart',
-        data: [{ label: "Download Sales", value: 12 },
-            { label: "In-Store Sales", value: 30 },
-            { label: "Mail-Order Sales", value: 20 } ],
-        resize: true,
-        colors: ['#E80F88', '#FF7F3F','#277BC0'],
-    });
-</script>
- 
 @endpush

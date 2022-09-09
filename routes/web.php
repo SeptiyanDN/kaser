@@ -29,14 +29,25 @@ Route::get('/register',[RegisterController::class, 'register'])->name('register'
 Route::post('/registration',[RegisterController::class, 'registration'])->name('registration');
 Route::get('/register-tenant',[RegisterController::class,'registrasiTenant']);
 
-Route::get('/cabang-outlet',[OutletController::class,'index'])->name('cabang-outlet');
-Route::get('/cabang-outlet/json',[OutletController::class,'json'])->name('json');
-Route::post('/cabang-outlet',[OutletController::class,'store'])->name('create-outlet');
-Route::get('/cabang-outlet/{id}',[OutletController::class,'show'])->name('update-outlet');
-Route::put('/cabang-outlet/{id}',[OutletController::class,'update']);;
-Route::delete('/cabang-outlet/{id}',[OutletController::class,'destroy'])->name('remove-outlet');
-Route::post('/ajax-autocomplete-search', [OutletController::class, 'selectSearch'])->name('ajax-autocomplete-search');
+// Route::get('/cabang-outlet',[OutletController::class,'index'])->name('cabang-outlet');
+// Route::get('/cabang-outlet/json',[OutletController::class,'json'])->name('json');
+// Route::post('/cabang-outlet',[OutletController::class,'store'])->name('create-outlet');
+// Route::get('/cabang-outlet/{id}',[OutletController::class,'show'])->name('update-outlet');
+// Route::put('/cabang-outlet/{id}',[OutletController::class,'update']);
+// Route::delete('/cabang-outlet/{id}',[OutletController::class,'destroy'])->name('remove-outlet');
+// Route::post('/ajax-autocomplete-search', [OutletController::class, 'selectSearch'])->name('ajax-autocomplete-search');
+// Route::get('/cabang-outlet/outlet-baru',[OutletController::class,'tambahOutlet']);
 
+Route::prefix('cabang-outlet')->group(function(){
+    Route::get('/',[OutletController::class,'index'])->name('cabang-outlet');
+    Route::get('/json',[OutletController::class,'json'])->name('json');
+    Route::post('/',[OutletController::class,'store'])->name('create-outlet');
+    Route::get('/{id}',[OutletController::class,'show'])->name('update-outlet');
+    Route::put('/{id}',[OutletController::class,'update']);
+    Route::delete('/{id}',[OutletController::class,'destroy'])->name('remove-outlet');
+    Route::post('/ajax-autocomplete-search', [OutletController::class, 'selectSearch'])->name('ajax-autocomplete-search');
+    Route::get('/tambahOutlet','OutletController@tambahOutlet')->name('tambahOutlet');
 
+});
 
 Route::get('/tenant/change/{tenantID}',[TenantController::class, 'changeTenant'])->name('tenants.change');

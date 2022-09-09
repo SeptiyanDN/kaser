@@ -33,23 +33,16 @@ class OutletController extends Controller
         )
         ->get();
         // }
-  
+
         $response = array();
         foreach($results as $result) {
             $response[] = array(
                 "kelurahan" => $result->villages_name,
                 "id" => "$result->villages_name, $result->districts_name, $result->regencies_name, $result->provinces_name",
                 "text" => "$result->villages_name, $result->districts_name, $result->regencies_name, $result->provinces_name",
-                
+
             );
         }
-        // foreach($kelurahan as $lurah){
-        //    $response[] = array(
-        //         "id"=>$lurah->name,
-        //         "text"=>".$lurah->name.+ .$lurah->id."
-        //    );
-        // }
-  
         return response()->json($response);
     }
 
@@ -59,18 +52,32 @@ class OutletController extends Controller
     }
     public function json() {
         return DataTables::of(Outlet::limit(10))
-        ->addIndexColumn()
         ->addColumn('aksi', function($data){
-         
-                     $button = '<button onclick="editForm(`'. route('update-outlet', $data->id) .'`)" class="btn btn-warning  btn-xs "><i class="fa fa-pencil"></i></button>';
-                     $button .= '<button onclick="deleteData(`'. route('remove-outlet', $data->id) .'`)" class="btn btn-danger  btn-xs demo3 "><i class="fa fa-trash"></i></button>';
+
+                     $button = '<a class="me-3" href="https://dreamspos.dreamguystech.com/laravel/template/public/product-details">
+                     <img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/eye.svg" alt="img">
+                     </a>';
+                     $button .= '<a class="me-3" href="https://dreamspos.dreamguystech.com/laravel/template/public/editproduct">
+                     <img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/edit.svg" alt="img">
+                     </a>';
+                     $button .= '<a class="me-3" onclick="deleteData(`'. route('remove-outlet', $data->id) .'`)">
+                     <img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/delete.svg" alt="img">
+                     </a>';
                      return $button;
                  })
         ->rawColumns(['aksi'])
         ->make(true);
     }
 
+    public function tambahOutlet(){
+        dd('Test');
+
+        return view('pemilikbisnis.outlet.tambahoutlet');
+    }
+
     /**
+     *
+     *
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
