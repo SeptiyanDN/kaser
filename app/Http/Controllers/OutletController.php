@@ -70,7 +70,6 @@ class OutletController extends Controller
     }
 
     public function tambahOutlet(){
-        dd('Test');
 
         return view('pemilikbisnis.outlet.tambahoutlet');
     }

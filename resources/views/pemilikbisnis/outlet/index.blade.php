@@ -10,7 +10,7 @@ Daftar Cabang Outlet
     <h6>Manage your products</h6>
     </div>
     <div class="page-btn">
-    <a href="https://dreamspos.dreamguystech.com/laravel/template/public/addproduct" class="btn btn-added"><img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/plus.svg" alt="img" class="me-1">Add New Product</a>
+    <a href="/outlet-baru" class="btn btn-added"><img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/plus.svg" alt="img" class="me-1">Tambah Outlet Baru</a>
     </div>
     </div>
 

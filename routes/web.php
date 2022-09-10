@@ -46,8 +46,9 @@ Route::prefix('cabang-outlet')->group(function(){
     Route::put('/{id}',[OutletController::class,'update']);
     Route::delete('/{id}',[OutletController::class,'destroy'])->name('remove-outlet');
     Route::post('/ajax-autocomplete-search', [OutletController::class, 'selectSearch'])->name('ajax-autocomplete-search');
-    Route::get('/tambahOutlet','OutletController@tambahOutlet')->name('tambahOutlet');
 
 });
+Route::get('/outlet-baru',[OutletController::class,'tambahOutlet'])->name('tambahOutlet');
+
 
 Route::get('/tenant/change/{tenantID}',[TenantController::class, 'changeTenant'])->name('tenants.change');

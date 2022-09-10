@@ -86,10 +86,8 @@
     <a href="javascript:void(0);"><img src="assets/img/icons/places.svg" alt="img"><span> Places</span> <span class="menu-arrow"></span></a>
     <ul>
     <li><a href="/cabang-outlet">Daftar Cabang Outlet</a></li>
-    <li><a href="/cabang-outlet/outlet-baru">Tambah Cabang Outlet Baru</a></li>
+    <li><a href="/outlet-baru">Tambah Cabang Outlet Baru</a></li>
     <li><a href="countrieslist.html">Countries list</a></li>
-    <li><a href="newstate.html">New State </a></li>
-    <li><a href="statelist.html">State list</a></li>
     </ul>
     </li>
     <li>

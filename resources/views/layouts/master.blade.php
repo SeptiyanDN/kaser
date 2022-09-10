@@ -66,10 +66,10 @@
 <script src={{asset("assets/js/bootstrap.bundle.min.js")}}></script>
 <script src={{asset("assets/js/feather.min.js")}}></script>
 <script src={{asset("assets/js/jquery.slimscroll.min.js")}}></script>
-<script src={{ asset("assets/js/plugins/dataTables/datatables.min.js")}}></script>
+<script src={{asset("assets/js/plugins/dataTables/datatables.min.js")}}></script>
 <script src={{asset("assets/plugins/datatables/jquery.dataTables.min.js")}}></script>
 <script src={{asset("assets/plugins/datatables/datatables.min.js")}}></script>
-<script src={{ asset("assets/js/validator.min.js")}}></script>
+<script src={{asset("assets/js/validator.min.js")}}></script>
 <script src={{asset("assets/plugins/select2/js/select2.min.js")}}></script>
 <script src={{asset("assets/js/moment.min.js")}}></script>
 <script src={{asset("assets/js/bootstrap-datetimepicker.min.js")}}></script>
