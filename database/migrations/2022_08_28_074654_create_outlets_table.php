@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('telepon');
             $table->string('alamat');
             $table->string('kelurahan');
+            $table->string('kode_pos');
+            $table->string('foto');
             $table->timestamps();
         });
     }

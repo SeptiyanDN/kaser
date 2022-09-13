@@ -35,7 +35,7 @@
 <body class="account-page">
 <div id="global-loader">
 <div class="whirly-loader"> </div>
-</div> 
+</div>
 <div class="main-wrapper">
 
 <div class="login-wrapper">
@@ -53,7 +53,7 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-end">Nama Pemilik</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -80,7 +80,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -90,6 +90,18 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="nama_bisnis" class="col-md-4 col-form-label text-md-end">{{ __('Nama Bisnis') }}</label>
+                            <div class="col-md-6">
+                                <input id="nama_bisnis" type="text" class="form-control @error('nama_bisnis') is-invalid @enderror" name="nama_bisnis" value="{{ old('nama_bisnis') }}" required autocomplete="email">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="handphone" class="col-md-4 col-form-label text-md-end">{{ __('Handphone') }}</label>
+                            <div class="col-md-6">
+                                <input id="handphone" type="text" class="form-control @error('handphone') is-invalid @enderror" name="handphone" value="{{ old('handphone') }}" required autocomplete="email">
                             </div>
                         </div>
 

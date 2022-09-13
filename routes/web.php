@@ -5,6 +5,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OutletController;
+use App\Http\Controllers\Permissions\AssignController;
+use App\Http\Controllers\Permissions\PermissionController;
+use App\Http\Controllers\Permissions\RoleController;
+use App\Http\Controllers\Permissions\UserController;
 use App\Http\Controllers\TenantController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,27 +32,59 @@ Route::get('/logout',[RegisterController::class,'logout'])->name('logout')->midd
 Route::get('/register',[RegisterController::class, 'register'])->name('register');
 Route::post('/registration',[RegisterController::class, 'registration'])->name('registration');
 Route::get('/register-tenant',[RegisterController::class,'registrasiTenant']);
+Route::get('/tenant/change/{tenantID}',[TenantController::class, 'changeTenant'])->name('tenants.change');
 
-// Route::get('/cabang-outlet',[OutletController::class,'index'])->name('cabang-outlet');
-// Route::get('/cabang-outlet/json',[OutletController::class,'json'])->name('json');
-// Route::post('/cabang-outlet',[OutletController::class,'store'])->name('create-outlet');
-// Route::get('/cabang-outlet/{id}',[OutletController::class,'show'])->name('update-outlet');
-// Route::put('/cabang-outlet/{id}',[OutletController::class,'update']);
-// Route::delete('/cabang-outlet/{id}',[OutletController::class,'destroy'])->name('remove-outlet');
-// Route::post('/ajax-autocomplete-search', [OutletController::class, 'selectSearch'])->name('ajax-autocomplete-search');
-// Route::get('/cabang-outlet/outlet-baru',[OutletController::class,'tambahOutlet']);
 
-Route::prefix('cabang-outlet')->group(function(){
-    Route::get('/',[OutletController::class,'index'])->name('cabang-outlet');
-    Route::get('/json',[OutletController::class,'json'])->name('json');
-    Route::post('/',[OutletController::class,'store'])->name('create-outlet');
-    Route::get('/{id}',[OutletController::class,'show'])->name('update-outlet');
-    Route::put('/{id}',[OutletController::class,'update']);
-    Route::delete('/{id}',[OutletController::class,'destroy'])->name('remove-outlet');
-    Route::post('/ajax-autocomplete-search', [OutletController::class, 'selectSearch'])->name('ajax-autocomplete-search');
+Route::middleware('has.role')->group(function(){
+
+    Route::prefix('users')->group(function(){
+        Route::get('/create',[UserController::class,'createUsers']);
+        Route::post('/create',[UserController::class,'tambahUser'])->name('users.create');
+        Route::get('/management',[UserController::class,'index'])->name('users.management');
+
+    });
+    Route::prefix('outlet')->group(function(){
+        Route::get('/tambah-outlet',[OutletController::class,'tambahOutlet']);
+        Route::get('/',[OutletController::class,'index'])->name('outlet');
+        Route::get('/json',[OutletController::class,'json'])->name('json');
+        Route::post('/',[OutletController::class,'store'])->name('create-outlet');
+        Route::get('/{id}',[OutletController::class,'show'])->name('update-outlet');
+        Route::put('/{id}',[OutletController::class,'update']);
+        Route::delete('/{id}',[OutletController::class,'destroy'])->name('remove-outlet');
+        Route::post('/ajax-autocomplete-search', [OutletController::class, 'selectSearch'])->name('ajax-autocomplete-search');
+    });
+
+    Route::prefix('role-and-permission')->namespace('Permissions')->group(function(){
+        Route::prefix('assignable')->group(function(){
+            Route::get('/',[AssignController::class,'create'])->name('assign.create');
+            Route::post('/',[AssignController::class,'store']);
+            Route::get('/{role}/edit',[AssignController::class,'edit'])->name('assign.edit');
+            Route::put('/{role}/edit',[AssignController::class,'update']);
+        });
+        Route::prefix('assign')->group(function(){
+            Route::get('/user',[UserController::class,'create'])->name('assign.user.create');
+            Route::post('/user',[UserController::class,'store']);
+            Route::get('/{user}/edit',[UserController::class,'edit'])->name('assign.user.edit');
+            Route::put('/{user}/edit',[UserController::class,'update']);
+        });
+
+        Route::prefix('roles')->group(function(){
+            Route::get('/',[RoleController::class,'index'])->name('roles.index');
+            Route::post('/create',[RoleController::class,'create'])->name('roles.create');
+            Route::get('/{role}/edit',[RoleController::class,'edit'])->name('roles.edit');
+            Route::put('/{role}/edit',[RoleController::class,'update']);
+            Route::delete('/{id}',[RoleController::class,'destroy'])->name('roles.remove');
+        });
+
+        Route::prefix('permissions')->group(function(){
+            Route::get('/',[PermissionController::class,'index'])->name('permissions.index');
+            Route::post('/create',[PermissionController::class,'create'])->name('permissions.create');
+            Route::get('/{permission}/edit',[PermissionController::class,'edit'])->name('permissions.edit');
+            Route::put('/{permission}/edit',[PermissionController::class,'update']);
+            Route::delete('/{id}',[PermissionController::class,'destroy'])->name('permissions.remove');
+        });
+
+    });
 
 });
-Route::get('/outlet-baru',[OutletController::class,'tambahOutlet'])->name('tambahOutlet');
 
-
-Route::get('/tenant/change/{tenantID}',[TenantController::class, 'changeTenant'])->name('tenants.change');

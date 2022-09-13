@@ -50,6 +50,11 @@ class OutletController extends Controller
     {
         return view('pemilikbisnis.outlet.index');
     }
+    public function tambahOutlet(){
+
+        return view('pemilikbisnis.outlet.tambahoutlet');
+    }
+
     public function json() {
         return DataTables::of(Outlet::limit(10))
         ->addColumn('aksi', function($data){
@@ -69,10 +74,6 @@ class OutletController extends Controller
         ->make(true);
     }
 
-    public function tambahOutlet(){
-
-        return view('pemilikbisnis.outlet.tambahoutlet');
-    }
 
     /**
      *
@@ -94,14 +95,22 @@ class OutletController extends Controller
      */
     public function store(Request $request)
     {
-        $outlet = new Outlet();
-        $outlet->nama_outlet = $request->nama_outlet;
-        $outlet->telepon = $request->telepon;
-        $outlet->alamat = $request->alamat;
-        $outlet->kelurahan = $request->kelurahan;
-        $outlet->save();
+        $filenameWithExt = $request->file('foto')->getClientOriginalName();
+        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        $extension = $request->file('foto')->getClientOriginalExtension();
+        $filenameSimpan = $filename.'_'.time().'.'.$extension;
 
-        return response()->json('Data berhasil Disimpan', 200);
+        $outlet = Outlet::create([
+            'nama_outlet' => $request->nama_outlet,
+            'telepon' => $request->telepon,
+            'alamat' => $request->alamat,
+            'kelurahan' => $request->kelurahan,
+            'kode_pos' => $request->kode_pos,
+            'foto'=>$filenameSimpan,
+        ]);
+        $path = $request->file('foto')->storeAs('public/post_image',$filenameSimpan);
+        dd($path);
+
     }
 
     /**

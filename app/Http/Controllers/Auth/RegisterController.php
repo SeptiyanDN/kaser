@@ -34,21 +34,28 @@ class RegisterController extends Controller
             'name'=> ['required', 'string','max:255'],
             'username' => ['required','string'],
             'email' => ['required', 'string', 'email','max:255','unique:users'],
+            'handphone' => ['required', 'string','max:255','unique:users'],
             'password' => ['required', 'confirmed'],
         ]);
         $user = User::create([
             'name' => $request->name,
             'username' =>$request->username,
             'email' => $request->email,
+            'handphone' => $request->handphone,
             'password' => Hash::make($request->password),
         ]);
         $randomString = Str::random(10);
         $tenant = Tenant::create([
-            'name' => $request->name . ' Team',
+            'name' => 'Bisnis '.$request->nama_bisnis,
             'subdomain' => $request->username.$randomString,
         ]);
         $tenant->users()->attach($user->id);
         $user->update(['current_tenant_id' => $tenant->id]);
+        if($user->email == 'business.septiyan@gmail.com'){
+            $user->assignRole('admin');
+        } else {
+            $user->assignRole('tamu');
+        }
         Auth::login($user);
 
         $mainDomain = str_replace('://' , '://' . $tenant->subdomain . '.' , config('app.url'));
@@ -57,7 +64,7 @@ class RegisterController extends Controller
     }
 
     public function registrasiTenant(Request $request) {
-        
+
         return view('auth.registertenant');
     }
 }

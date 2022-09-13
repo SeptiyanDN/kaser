@@ -23,12 +23,14 @@
 <link rel="stylesheet" href={{asset("assets/plugins/select2/css/select2.min.css")}}>
 <link rel="stylesheet" href={{asset("assets/plugins/dragula/dragula.min.css")}}>
 <link rel="stylesheet" href={{asset("assets/css/dataTables.bootstrap4.min.css")}}>
-<link href={{ asset("assets/css/plugins/toastr/toastr.min.css")}} rel="stylesheet">
-<link href={{ asset('assets/css/plugins/sweetalert/sweetalert.css')}} rel="stylesheet">
+<link href={{asset("assets/css/plugins/toastr/toastr.min.css")}} rel="stylesheet">
+<link href={{asset('assets/css/plugins/sweetalert/sweetalert.css')}} rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css" id="theme-styles">
 
 <link rel="stylesheet" href={{asset("assets/css/style.css")}}>
+<link rel="stylesheet" href="/assets/css/styles.css">
+
 @stack('css')
 
 </head>
@@ -41,11 +43,11 @@
 <div class="main-wrapper">
 
 {{-- Navbar --}}
-@include('layouts.navbar')
+<x-layouts.navbar></x-layouts.navbar>
 {{-- End Navbar --}}
 
 {{-- sidebar --}}
-@include('layouts.sidebar')
+<x-layouts.sidebar></x-layouts.sidebar>
 {{-- End Sidebar --}}
 <div class="page-wrapper">
 <div class="content">
@@ -79,9 +81,9 @@
 <script src={{asset("assets/plugins/fileupload/fileupload.min.js")}}></script>
 <script src={{asset("assets/plugins/sweetalert/sweetalert2.all.min.js")}}></script>
 <script src={{asset("assets/plugins/sweetalert/sweetalerts.min.js")}}></script>
-<script src={{ asset('assets/js/plugins/sweetalert/sweetalert.min.js')}}></script>
+<script src={{asset('assets/js/plugins/sweetalert/sweetalert.min.js')}}></script>
 
-<script src={{ asset("assets/js/plugins/toastr/toastr.min.js")}}></script>
+<script src={{asset("assets/js/plugins/toastr/toastr.min.js")}}></script>
 
 <script src={{asset("assets/js/script.js")}}></script>
 

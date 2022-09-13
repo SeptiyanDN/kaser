@@ -76,7 +76,7 @@
 <button class="btn btn-login" type="submit">Sign In</button>
 </div>
 <div class="signinform text-center">
-<h4>Don’t have an account? <a href="https://dreamspos.dreamguystech.com/laravel/template/public/signup" class="hover-a">Sign Up</a></h4>
+<h4>Don’t have an account? <a href="/register" class="hover-a">Sign Up</a></h4>
 </div>
 <div class="form-setlogin">
 <h4>Or sign up with</h4>

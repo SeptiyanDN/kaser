@@ -1,16 +1,16 @@
 @extends('layouts.master')
 @section('title')
-Daftar Cabang Outlet
+Management Outlet
 @endsection
 
 @section('content')
     <div class="page-header">
     <div class="page-title">
-    <h4>Product List</h4>
-    <h6>Manage your products</h6>
+    <h4>Management Outlet</h4>
+    <h6>Management Outlet</h6>
     </div>
     <div class="page-btn">
-    <a href="/outlet-baru" class="btn btn-added"><img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/plus.svg" alt="img" class="me-1">Tambah Outlet Baru</a>
+    <a href="/outlet/outlet-baru" class="btn btn-added"><img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/plus.svg" alt="img" class="me-1">Tambah Outlet Baru</a>
     </div>
     </div>
 
@@ -124,7 +124,7 @@ Daftar Cabang Outlet
 <script>
     let table
     $(function(){
-        table = $('.datanew').removeAttr('width').DataTable({
+        table = $('.datanew').DataTable({
 			"bFilter": true,
             "serverSide":true,
             "responsive":true,
@@ -138,7 +138,7 @@ Daftar Cabang Outlet
 				info: "_START_ - _END_ of _TOTAL_ items",
 			 },
              ajax: {
-                url: "/cabang-outlet/json",
+                url: "/outlet/json",
             },
             columns: [
 
