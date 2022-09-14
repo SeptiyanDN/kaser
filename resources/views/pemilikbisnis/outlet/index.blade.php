@@ -10,7 +10,7 @@ Management Outlet
     <h6>Management Outlet</h6>
     </div>
     <div class="page-btn">
-    <a href="/outlet/outlet-baru" class="btn btn-added"><img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/plus.svg" alt="img" class="me-1">Tambah Outlet Baru</a>
+    <a href="/outlet/tambah-outlet" class="btn btn-added"><img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/plus.svg" alt="img" class="me-1">Tambah Outlet Baru</a>
     </div>
     </div>
 
@@ -28,6 +28,7 @@ Management Outlet
     <a class="btn btn-searchset"><img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/search-white.svg" alt="img"></a>
     </div>
     </div>
+
     <div class="wordset">
     <ul>
     <li>
@@ -42,7 +43,11 @@ Management Outlet
     </ul>
     </div>
     </div>
-
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{session('success')}}
+    </div>
+    @endif
     <div class="card mb-0" id="filter_inputs">
     <div class="card-body pb-0">
     <div class="row">
@@ -102,16 +107,32 @@ Management Outlet
     </div>
 
     <div class="table-responsive">
-        <table class="table datanew table-hover">
+        <table class="table table-outlet table-hover" >
             <thead>
                 <tr>
                     <th>Nama Outlet</th>
                     <th>Telepon</th>
                     <th>Alamat </th>
-                    <th style="width:20%">Kelurahan</th>
+                    <th >Kelurahan</th>
+                    <th>Kode Pos</th>
+                    <th>Subdomain</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
+            <tbody>
+                @foreach ($tenants as $tenant)
+                <tr>
+                    <td>{{$tenant->name}}</td>
+                    <td>{{$tenant->telepon}}</td>
+                    <td>{{$tenant->alamat}}</td>
+                    <td>{{$tenant->kelurahan}}</td>
+                    <td>{{$tenant->kode_pos}}</td>
+                    <td>{{$tenant->subdomain}}</td>
+                    <td>aksi</td>
+                </tr>
+                @endforeach
+
+            </tbody>
     </table>
     </div>
     </div>
@@ -124,12 +145,11 @@ Management Outlet
 <script>
     let table
     $(function(){
-        table = $('.datanew').DataTable({
+        table = $('.table-outlet').DataTable({
 			"bFilter": true,
-            "serverSide":true,
             "responsive":true,
 			"sDom": 'fBtlpi',
-            "autoWidth": false,
+            "autoWidth": true,
 			"ordering": true,
 			"language": {
 				search: ' ',
@@ -137,17 +157,6 @@ Management Outlet
 				searchPlaceholder: "Mencari...",
 				info: "_START_ - _END_ of _TOTAL_ items",
 			 },
-             ajax: {
-                url: "/outlet/json",
-            },
-            columns: [
-
-                {data :'nama_outlet',name:'nama_outlet',"width": "10%"},
-                {data :'telepon', name:'telepon',"width": "10%"},
-                {data :'alamat', name:'alamat',"width": "10%",},
-                {data :'kelurahan', name:'kelurahan',"width": "30%"},
-                {data :'aksi', name:'aksi',"width": "10%"}
-            ],
 
 			initComplete: (settings, json)=>{
 				$('.dataTables_filter').appendTo('#tableSearch');

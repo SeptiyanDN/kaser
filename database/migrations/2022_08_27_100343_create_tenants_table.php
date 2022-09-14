@@ -17,6 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('subdomain');
+            $table->string('telepon');
+            $table->string('alamat');
+            $table->string('kelurahan');
+            $table->String('kode_pos');
             $table->timestamps();
         });
     }

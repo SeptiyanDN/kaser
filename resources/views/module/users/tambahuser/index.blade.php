@@ -47,8 +47,19 @@ Management Users
             </div>
             <div class="form-group">
             <label>Mobile</label>
-            <input type="text">
+            <input type="text" id="telepon" name="telepon" class="form-control">
             </div>
+            <div class="form-group">
+                <label>Outlet</label>
+                <select class="select form-control" id="tenant" name="tenant">
+                    <option>Pilihan Outlet</option>
+
+                    @foreach ($tenants as $tenant )
+                        <option value={{$tenant->id}}>{{$tenant->name}}</option>
+                    @endforeach
+                </select>
+                </div>
+
             <div class="form-group">
             <label>Role</label>
             <select class="select form-control" id="role" name="role">

@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('outlets', function (Blueprint $table) {
-            $table->foreignId('tenant_id')->references('id')->on('tenants');
-
+        Schema::table('tenant_user', function (Blueprint $table) {
+            $table->foreignId('pemilik')->nullable()->references('id')->on('users');
         });
     }
 
@@ -26,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('outlets', function (Blueprint $table) {
+        Schema::table('tenant_user', function (Blueprint $table) {
             //
         });
     }

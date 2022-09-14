@@ -49,92 +49,98 @@
 <h4>Continue where you left off</h4>
 </div>
 
-<form method="POST" action="{{ route('registration') }}">
-                        @csrf
+<Form method="POST" action="{{ route('registration') }}">
+    @csrf
+<div class="row">
+    <div class="form-login col-lg-6">
+        <label>Nama Lengkap</label>
+        <div class="form-addons">
+        <input type="text" name="name" id="name" class="form-control">
+        <img src={{asset("assets/img/icons/users1.svg")}} alt="img">
+        </div>
+        <div class="text-danger pt-2">
+        </div>
+    </div>
+    <div class="form-login col-lg-6">
+        <label>Username</label>
+        <div class="form-addons">
+        <input type="text" name="username" id="username" class="form-control">
+        <img src={{asset("assets/img/icons/users1.svg")}} alt="img">
+        </div>
+        <div class="text-danger pt-2">
+        </div>
+    </div>
+    <div class="form-login col-lg-12">
+        <label>Email</label>
+        <div class="form-addons">
+        <input type="text" name="email" id="Email" class="form-control">
+        <img src={{asset("assets/img/icons/mail.svg")}} alt="img">
+        </div>
+        <div class="text-danger pt-2">
+        </div>
+    </div>
+    <div class="form-login col-lg-6">
+            <label>Password</label>
+            <div class="pass-group">
+            <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password">
+            <div class="text-danger pt-2">
+            </div>
+            </div>
+    </div>
+    <div class="form-login col-lg-6">
+        <label>Password Confirmation</label>
+        <div class="pass-group">
+        <input type="password" id="password-confirm" name="password-confirmation"  class="pass-input" placeholder="Enter your password">
+        <div class="text-danger pt-2">
+        </div>
+    </div>
+    </div>
+    <div class="form-login col-lg-6">
+        <label>Nama Bisnis</label>
+        <div class="form-addons">
+        <input type="text" id="nama_bisnis" name="nama_bisnis"  class="form-control" >
+        <div class="text-danger pt-2">
+        </div>
+        </div>
+    </div>
+    <div class="form-login col-lg-6">
+        <label>Telepon</label>
+        <div class="form-addons">
+        <input type="text" id="telepon" name="telepon"  class="form-control" >
+        <div class="text-danger pt-2">
+        </div>
+        </div>
+    </div>
+    <div class="form-login col-lg-12">
+        <label>Alamat</label>
+        <div class="form-addons">
+            <textarea name="alamat" id="alamat" class="form-control"></textarea>
+        <div class="text-danger pt-2">
+        </div>
+        </div>
+    </div>
+    <div class="form-login col-lg-12">
+        <label>Kelurahan</label>
+        <div class="form-addons">
+            <select id="kelurahan" name="kelurahan" class="form-control" ></select>
+            <div class="text-danger pt-2">
+        </div>
+        </div>
+    </div>
+    <div class="form-login col-lg-12">
+        <label>Kode Pos</label>
+        <div class="form-addons">
+            <input name="kode_pos" id="kode_pos" class="form-control">
+        <div class="text-danger pt-2">
+        </div>
+        </div>
+    </div>
+<button type="submit" class="btn btn-primary">Registrasi</button>
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">Nama Pemilik</label>
+</div>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+    </Form>
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="username" class="col-md-4 col-form-label text-md-end">{{ __('Username') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
-
-                                @error('username')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="nama_bisnis" class="col-md-4 col-form-label text-md-end">{{ __('Nama Bisnis') }}</label>
-                            <div class="col-md-6">
-                                <input id="nama_bisnis" type="text" class="form-control @error('nama_bisnis') is-invalid @enderror" name="nama_bisnis" value="{{ old('nama_bisnis') }}" required autocomplete="email">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="handphone" class="col-md-4 col-form-label text-md-end">{{ __('Handphone') }}</label>
-                            <div class="col-md-6">
-                                <input id="handphone" type="text" class="form-control @error('handphone') is-invalid @enderror" name="handphone" value="{{ old('handphone') }}" required autocomplete="email">
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
 
 
 <div class="signinform text-center">
@@ -195,4 +201,26 @@ Sign Up using Facebook
 <script src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/plugins/sweetalert/sweetalerts.min.js"></script>
 
 <script src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/js/script.js"></script> </body>
+<script>
+    $('#kelurahan').select2({
+    placeholder: "Pilih Kelurahan...",
+    minimumInputLength: 2,
+    ajax: {
+        url: '/kelurahan/json',
+        dataType: 'json',
+        data: function (params) {
+            return {
+                kelurahan: $.trim(params.term)
+            };
+        },
+        processResults: function (data) {
+            return {
+                results: data
+            };
+        },
+        cache: true
+    }
+});
+</script>
+
 </html>

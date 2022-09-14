@@ -42,7 +42,11 @@ Managemen Pegawai
     </ul>
     </div>
     </div>
-
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{session('success')}}
+    </div>
+    @endif
     <div class="card mb-0" id="filter_inputs">
     <div class="card-body pb-0">
     <div class="row">
@@ -110,6 +114,7 @@ Managemen Pegawai
                     <th style="width:25%">Email</th>
                     <th style="width:10%">Handphone</th>
                     <th style="width:10%">Hak Akses</th>
+                    <th style="width:10%">Staff Cabang</th>
                     <th style="width:10%">Tanggal Registrasi</th>
                     <th style="width:10%">Aksi</th>
                 </tr>
@@ -120,8 +125,10 @@ Managemen Pegawai
                     <td>{{$user->name}}</td>
                     <td>{{$user->username}}</td>
                     <td>{{$user->email}}</td>
-                    <td>{{$user->handphone}}</td>
+                    <td>{{$user->telepon}}</td>
                     <td>{{implode(', ', $user->getRoleNames()->toArray())}}</td>
+                    <td>{{$user->nama_cabang}}</td>
+
                     <td>{{$user->created_at->format("d F Y")}}</td>
                     <td>
                         <a class="me-3" href={{route('roles.edit',$user)}}>

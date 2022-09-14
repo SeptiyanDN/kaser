@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 
@@ -24,38 +26,69 @@ class RegisterController extends Controller
 
         return redirect(config('app.url'))->with('session','Berhasil Logout');
     }
+    public function kelurahanJson(Request $request)
+    {
+        $search = trim($request->kelurahan);
 
+        $data = DB::table('villages')
+        ->leftJoin('districts','villages.district_id','=','districts.id')
+        ->leftJoin('regencies','districts.regency_id', '=','regencies.id')
+        ->leftJoin('provinces','regencies.province_id', '=','provinces.id')
+        ->Where('villages.name', $search )
+        ->select(
+            'villages.name as villages_name',
+            'districts.name as districts_name',
+            'regencies.name as regencies_name',
+            'provinces.name as provinces_name'
+        )
+        ->get();
+
+        $kelurahanJson = [];
+
+        foreach ($data as $item) {
+            $kelurahanJson[] = [
+                "id" => "$item->villages_name, $item->districts_name, $item->regencies_name, $item->provinces_name",
+                "text" => "$item->villages_name, $item->districts_name, $item->regencies_name, $item->provinces_name",
+            ];
+        }
+
+        return response()->json($kelurahanJson);
+    }
     public function register(){
+
         return view('/auth.register');
     }
 
     public function registration(Request $request){
-        $request->validate([
-            'name'=> ['required', 'string','max:255'],
-            'username' => ['required','string'],
-            'email' => ['required', 'string', 'email','max:255','unique:users'],
-            'handphone' => ['required', 'string','max:255','unique:users'],
-            'password' => ['required', 'confirmed'],
-        ]);
         $user = User::create([
             'name' => $request->name,
             'username' =>$request->username,
             'email' => $request->email,
-            'handphone' => $request->handphone,
+            'telepon' => $request->telepon,
             'password' => Hash::make($request->password),
         ]);
-        $randomString = Str::random(10);
+        $randomString = Str::random(5);
+        $strtolower = strtolower(str_replace(' ','-',$request->nama_bisnis));
         $tenant = Tenant::create([
-            'name' => 'Bisnis '.$request->nama_bisnis,
-            'subdomain' => $request->username.$randomString,
+            'name' => $request->nama_bisnis.' Cabang Pusat',
+            'subdomain' => $strtolower.$randomString,
+            'telepon' => $request->telepon,
+            'alamat'=> $request->alamat,
+            'kelurahan' => $request->kelurahan,
+            'kode_pos' => $request->kode_pos
         ]);
-        $tenant->users()->attach($user->id);
+
         $user->update(['current_tenant_id' => $tenant->id]);
         if($user->email == 'business.septiyan@gmail.com'){
             $user->assignRole('admin');
         } else {
             $user->assignRole('tamu');
         }
+        DB::table('tenant_user')->insert([
+            'tenant_id' => $tenant->id,
+            'user_id' => $user->id,
+            'pemilik' =>$user->id
+        ]);
         Auth::login($user);
 
         $mainDomain = str_replace('://' , '://' . $tenant->subdomain . '.' , config('app.url'));

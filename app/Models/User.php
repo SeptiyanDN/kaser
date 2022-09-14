@@ -23,7 +23,7 @@ class User extends Authenticatable
         'username',
         'name',
         'email',
-        'handphone',
+        'telepon',
         'password',
         'current_tenant_id'
 

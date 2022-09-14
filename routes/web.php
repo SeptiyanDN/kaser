@@ -33,6 +33,8 @@ Route::get('/register',[RegisterController::class, 'register'])->name('register'
 Route::post('/registration',[RegisterController::class, 'registration'])->name('registration');
 Route::get('/register-tenant',[RegisterController::class,'registrasiTenant']);
 Route::get('/tenant/change/{tenantID}',[TenantController::class, 'changeTenant'])->name('tenants.change');
+Route::post('/ajax-autocomplete-search', [OutletController::class, 'selectSearch'])->name('ajax-autocomplete-search');
+Route::get('/kelurahan/json', [RegisterController::class,'kelurahanJson']);
 
 
 Route::middleware('has.role')->group(function(){
@@ -44,14 +46,13 @@ Route::middleware('has.role')->group(function(){
 
     });
     Route::prefix('outlet')->group(function(){
-        Route::get('/tambah-outlet',[OutletController::class,'tambahOutlet']);
-        Route::get('/',[OutletController::class,'index'])->name('outlet');
-        Route::get('/json',[OutletController::class,'json'])->name('json');
-        Route::post('/',[OutletController::class,'store'])->name('create-outlet');
+        Route::get('/tambah-outlet',[TenantController::class,'tambahOutlet']);
+        Route::get('/',[TenantController::class,'index'])->name('outlet');
+        Route::get('/json',[TenantController::class,'json'])->name('json');
+        Route::post('/',[TenantController::class,'store'])->name('create-outlet');
         Route::get('/{id}',[OutletController::class,'show'])->name('update-outlet');
         Route::put('/{id}',[OutletController::class,'update']);
         Route::delete('/{id}',[OutletController::class,'destroy'])->name('remove-outlet');
-        Route::post('/ajax-autocomplete-search', [OutletController::class, 'selectSearch'])->name('ajax-autocomplete-search');
     });
 
     Route::prefix('role-and-permission')->namespace('Permissions')->group(function(){

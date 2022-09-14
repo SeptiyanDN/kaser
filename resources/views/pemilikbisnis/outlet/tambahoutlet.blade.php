@@ -38,10 +38,7 @@ Menambahkan Outlet Baru
     <div class="col-lg-8 col-sm-6 col-12">
     <div class="form-group">
     <label>Kelurahan</label>
-    <select  id="kelurahan" name="kelurahan" class="form-control select">
-    <option>Pilih Kelurahan Alamat Outlet</option>
-    <option value="kelurahan testing">2%</option>
-    </select>
+    <select id="kelurahan" name="kelurahan" class="form-control" ></select>
     </div>
     </div>
     <div class="col-lg-4 col-sm-6 col-12">
@@ -74,3 +71,26 @@ Menambahkan Outlet Baru
 
     </div>
 @endsection
+@push('scripts')
+<script>
+    $('#kelurahan').select2({
+    placeholder: "Pilih Kelurahan...",
+    minimumInputLength: 2,
+    ajax: {
+        url: '/kelurahan/json',
+        dataType: 'json',
+        data: function (params) {
+            return {
+                kelurahan: $.trim(params.term)
+            };
+        },
+        processResults: function (data) {
+            return {
+                results: data
+            };
+        },
+        cache: true
+    }
+});
+</script>
+@endpush

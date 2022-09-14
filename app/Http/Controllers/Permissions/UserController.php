@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Tenant;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -14,19 +15,36 @@ class UserController extends Controller
 {
 
     public function index(){
-        return view('module.users.index',[
-            'users'=> User::where('current_tenant_id', auth()->user()->current_tenant_id)->get()
-        ]);
+        if($user = Auth::user()->roles[0]->name == 'admin'){
+            $users = User::join('tenant_user', 'tenant_user.user_id', '=', 'users.id')
+            ->join('tenants','tenants.id','=','tenant_user.tenant_id')
+            ->where('tenant_user.pemilik',auth()->user()->id )
+            ->whereNot('tenant_user.user_id','=',auth()->user()->id)
+            ->get(['users.*','tenants.name as nama_cabang']);
+        } else {
+            $users = User::join('tenant_user', 'tenant_user.user_id', '=', 'users.id')
+            ->join('tenants','tenants.id','=','tenant_user.tenant_id')
+            ->where('tenant_user.tenant_id',auth()->user()->current_tenant_id )
+            ->get(['users.*','tenants.name as nama_cabang']);
+        }
+
+
+        return view('module.users.index',compact('users'));
     }
     public function createUsers(){
 
         return view('module.users.tambahuser.index',[
             'roles' => DB::table('roles')
-            ->where('name','admin')
-            ->orWhere('name','supervisor')
-            ->orWhere('name','kasir')
+            ->whereNotIn('name',['tamu','super admin'])
             ->get(),
-
+            'tenants' => DB::table('tenants')
+            ->leftJoin('tenant_user','tenant_user.tenant_id' ,'=','tenants.id')
+            ->Where('tenant_user.user_id',auth()->user()->id)
+            ->select(
+                'tenants.name as name',
+                'tenants.id as id'
+            )
+            ->get(),
         ]);
     }
 
@@ -34,18 +52,20 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'username' =>$request->username,
+            'telepon' =>$request->telepon,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        $user->update(['current_tenant_id' => auth()->user()->current_tenant_id]);
+        $user->update(['current_tenant_id' => $request->tenant]);
         $user->assignRole(request('role'));
         $tenantID = DB::table('tenant_user')
-        ->where('tenant_id',auth()->user()->current_tenant_id)
+        ->where('tenant_id',$request->tenant)
         ->first();
         DB::table('tenant_user')->insert([
             'tenant_id' => $tenantID->tenant_id,
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'pemilik' =>auth()->user()->id
         ]);
         return redirect('/users/management')->with('success','Berhasil Menambahkan User Baru!');
     }
