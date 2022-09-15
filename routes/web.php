@@ -4,11 +4,15 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\kategoriController;
+use App\Http\Controllers\MerekController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\Permissions\AssignController;
 use App\Http\Controllers\Permissions\PermissionController;
 use App\Http\Controllers\Permissions\RoleController;
 use App\Http\Controllers\Permissions\UserController;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TenantController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +43,24 @@ Route::get('/kelurahan/json', [RegisterController::class,'kelurahanJson']);
 
 Route::middleware('has.role')->group(function(){
 
+    Route::prefix('products')->group(function(){
+
+        Route::prefix('kategori')->group(function(){
+            Route::get('/',[kategoriController::class,'index']);
+            Route::post('/',[kategoriController::class,'store'])->name('tambah.kategori');
+        });
+
+        Route::prefix('merek')->group(function(){
+            Route::get('/',[MerekController::class,'index']);
+            Route::post('/',[MerekController::class,'store'])->name('tambah.merek');
+        });
+
+        Route::get('/',[ProdukController::class,'index'])->name('index.produk');
+        Route::get('/tambah',[ProdukController::class,'create']);
+        Route::post('/tambah',[ProdukController::class,'store'])->name('tambah.produk');
+
+    });
+
     Route::prefix('users')->group(function(){
         Route::get('/create',[UserController::class,'createUsers']);
         Route::post('/create',[UserController::class,'tambahUser'])->name('users.create');
@@ -53,6 +75,12 @@ Route::middleware('has.role')->group(function(){
         Route::get('/{id}',[OutletController::class,'show'])->name('update-outlet');
         Route::put('/{id}',[OutletController::class,'update']);
         Route::delete('/{id}',[OutletController::class,'destroy'])->name('remove-outlet');
+    });
+
+    Route::prefix('suppliers')->group(function(){
+        Route::get('/',[SupplierController::class,'index']);
+        Route::get('/tambah',[SupplierController::class,'create']);
+        Route::post('/tambah',[SupplierController::class,'store'])->name('tambah.supplier');
     });
 
     Route::prefix('role-and-permission')->namespace('Permissions')->group(function(){

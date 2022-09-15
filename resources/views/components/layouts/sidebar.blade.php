@@ -34,7 +34,7 @@
         <li class="submenu">
         <a href="javascript:void(0);"><img src={{asset("assets/img/icons/product.svg")}} alt="img"><span> Produk</span> <span class="menu-arrow"></span></a>
         <ul>
-        <li><a href="productlist.html">Katalog Produk</a></li>
+        <li><a href={{route('index.produk')}}>Katalog Produk</a></li>
         <li><a href="addproduct.html">Pajak</a></li>
         <li><a href="categorylist.html">Resep</a></li>
         <li><a href="addcategory.html">Bahan Baku</a></li>
@@ -55,9 +55,8 @@
         <li class="submenu">
             <a href="javascript:void(0);"><i data-feather="truck"></i><span> Inventaris</span> <span class="menu-arrow"></span></a>
             <ul>
-            <li><a href="/users"> </a></li>
             <li><a href="/users/management">Ringkasan</a></li>
-            <li><a href="#">Supplier</a></li>
+            <li><a href="/suppliers">Supplier</a></li>
             <li><a href="#">Pembelian</a></li>
             <li><a href="#">Pemindahan Stock</a></li>
             <li><a href="#">Penyesuaian Stock</a></li>

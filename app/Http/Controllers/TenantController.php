@@ -34,12 +34,12 @@ class TenantController extends Controller
             'tenants.kode_pos as kode_pos',
         )
         ->get();
-        return view('pemilikbisnis.outlet.index',compact('tenants'));
+        return view('module.outlet.index',compact('tenants'));
     }
 
     public function tambahOutlet(){
 
-        return view('pemilikbisnis.outlet.tambahoutlet');
+        return view('module.outlet.tambahoutlet');
     }
     public function store(Request $request)
     {

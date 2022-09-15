@@ -45,15 +45,18 @@ Menambahkan Outlet Baru
         <div class="form-group">
         <label>Kode Pos</label>
         <input type="text" id="kode_pos" name="kode_pos" class="form-control">
+
         </div>
-        </div>
+    </div>
     <div class="col-lg-12">
     <div class="form-group">
     <label>Foto Outlet</label>
     <div class="image-upload">
-    <input type="file" name="foto" class="form-control">
-    <div class="image-uploads">
+        <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="image/*">
+        <div class="image-uploads">
     <img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/upload.svg" alt="img">
+    <div class="custom-file-container__image-preview"></div>
+
     <h4>Pilih File Foto Outlet</h4>
     </div>
     </div>
