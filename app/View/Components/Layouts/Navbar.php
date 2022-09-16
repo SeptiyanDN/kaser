@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Layouts;
 
+use App\Models\Tenant;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\Component;
 
@@ -32,6 +33,9 @@ class Navbar extends Component
             'tenants.id as id'
          )
          ->get();
-        return view('components.layouts.navbar',compact('tenant'));
+
+        $current_tenant = Tenant::where('id',auth()->user()->current_tenant_id)
+        ->first();
+        return view('components.layouts.navbar',compact('tenant','current_tenant'));
     }
 }

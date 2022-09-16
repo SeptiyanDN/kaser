@@ -12,6 +12,10 @@ use Illuminate\Support\Str;
 
 class TenantController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth','verified']);
+    }
     public function changeTenant($tenantID){
         $tenant = Auth::user()->tenants()->findOrFail($tenantID);
 

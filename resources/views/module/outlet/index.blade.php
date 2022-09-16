@@ -128,7 +128,14 @@ Management Outlet
                     <td>{{$tenant->kelurahan}}</td>
                     <td>{{$tenant->kode_pos}}</td>
                     <td>{{$tenant->subdomain}}</td>
-                    <td>aksi</td>
+                    <td>
+                        <a class="me-3" >
+                            <img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/edit.svg" alt="img">
+                        </a>
+                        <a class="me-3" >
+                            <img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/delete.svg" alt="img">
+                        </a>
+                    </td>
                 </tr>
                 @endforeach
 

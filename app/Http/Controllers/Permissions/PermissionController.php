@@ -9,6 +9,10 @@ use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth','verified']);
+    }
     public function index(){
         $permissions = Permission::get();
         $permission = new Permission;

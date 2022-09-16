@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('kategoris', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_kategori');
+            $table->foreignId('tenant_id')->references('id')->on('tenants');
             $table->timestamps();
         });
     }

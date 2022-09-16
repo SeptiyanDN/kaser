@@ -37,8 +37,7 @@
 <div class="whirly-loader"> </div>
 </div>
 <div class="main-wrapper">
-<Form action="{{ route('authentication') }}" method="POST" class="account-content">
-@csrf
+
 <div class="login-wrapper">
 <div class="login-content">
 <div class="login-userset">
@@ -46,42 +45,64 @@
 <img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/logo.png" alt="img">
 </div>
 <div class="login-userheading">
-<h3>Sign In</h3>
-<h4>Please login to your account</h4>
+<h3>Satu langkah mudah setting Kaser</h3>
+<h4>Continue where you left off</h4>
 </div>
-@if(session('message'))
-<div class="alert alert-success">
-    {{session('message')}}
+
+<Form method="POST" action="{{ route('onboardWizard') }}">
+    @csrf
+<div class="row">
+
+    <div class="form-login col-lg-6">
+        <label>Nama Bisnis</label>
+        <div class="form-addons">
+        <input type="text" id="nama_bisnis" name="nama_bisnis"  class="form-control" >
+        <div class="text-danger pt-2">
+        </div>
+        </div>
+    </div>
+    <div class="form-login col-lg-6">
+        <label>Telepon</label>
+        <div class="form-addons">
+        <input type="text" id="telepon" name="telepon"  class="form-control" >
+        <div class="text-danger pt-2">
+        </div>
+        </div>
+    </div>
+    <div class="form-login col-lg-12">
+        <label>Alamat</label>
+        <div class="form-addons">
+            <textarea name="alamat" id="alamat" class="form-control"></textarea>
+        <div class="text-danger pt-2">
+        </div>
+        </div>
+    </div>
+    <div class="form-login col-lg-12">
+        <label>Kelurahan</label>
+        <div class="form-addons">
+            <select id="kelurahan" name="kelurahan" class="form-control" ></select>
+            <div class="text-danger pt-2">
+        </div>
+        </div>
+    </div>
+    <div class="form-login col-lg-12">
+        <label>Kode Pos</label>
+        <div class="form-addons">
+            <input name="kode_pos" id="kode_pos" class="form-control">
+        <div class="text-danger pt-2">
+        </div>
+        </div>
+    </div>
+<button type="submit" class="btn btn-primary">Finish</button>
+
 </div>
-@endif
-<div class="form-login">
-<label>Email</label>
-<div class="form-addons">
-<input type="text" name="email" id="Email" value="admin@example.com">
-<img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/mail.svg" alt="img">
-</div>
-<div class="text-danger pt-2">
-</div>
-</div>
-<div class="form-login">
-<label>Password</label>
-<div class="pass-group">
-<input type="password" class="pass-input" name="password" id="password" value="123456">
-<span class="fas toggle-password fa-eye-slash"></span>
-</div>
- <div class="text-danger pt-2">
-</div>
-</div>
-<div class="form-login">
-<div class="alreadyuser">
-<h4><a href={{route('forgot.password')}} class="hover-a">Forgot Password?</a></h4>
-</div>
-</div>
-<div class="form-login">
-<button class="btn btn-login" type="submit">Sign In</button>
-</div>
+
+    </Form>
+
+
+
 <div class="signinform text-center">
-<h4>Don’t have an account? <a href={{route('register')}} class="hover-a">Sign Up</a></h4>
+<h4>Already a user? <a href="https://dreamspos.dreamguystech.com/laravel/template/public/signin" class="hover-a">Sign In</a></h4>
 </div>
 <div class="form-setlogin">
 <h4>Or sign up with</h4>
@@ -108,7 +129,6 @@ Sign Up using Facebook
 <img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/login.jpg" alt="img">
 </div>
 </div>
-</Form>
 </div>
 
 
@@ -139,4 +159,26 @@ Sign Up using Facebook
 <script src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/plugins/sweetalert/sweetalerts.min.js"></script>
 
 <script src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/js/script.js"></script> </body>
+<script>
+    $('#kelurahan').select2({
+    placeholder: "Pilih Kelurahan...",
+    minimumInputLength: 2,
+    ajax: {
+        url: "{{route('json.kelurahan')}}",
+        dataType: 'json',
+        data: function (params) {
+            return {
+                kelurahan: $.trim(params.term)
+            };
+        },
+        processResults: function (data) {
+            return {
+                results: data
+            };
+        },
+        cache: true
+    }
+});
+</script>
+
 </html>

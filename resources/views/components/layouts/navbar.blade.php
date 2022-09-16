@@ -40,7 +40,7 @@
 
         <li class="nav-item dropdown has-arrow flag-nav">
         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);" role="button">
-            <i data-feather="award"></i> Pilihan Outlet
+            <i data-feather="award"></i> {{$current_tenant->name}}
         </a>
         <div class="dropdown-menu dropdown-menu-right">
             @foreach ($tenant as $data)
@@ -153,10 +153,10 @@
     </div>
         </div>
         <hr class="m-0">
-        <a class="dropdown-item" href="profile.html"> <i class="me-2" data-feather="user"></i> My Profile</a>
+        <a class="dropdown-item" href={{route('profile')}}> <i class="me-2" data-feather="user"></i> My Profile</a>
         <a class="dropdown-item" href="generalsettings.html"><i class="me-2" data-feather="settings"></i>Settings</a>
         <hr class="m-0">
-        <a class="dropdown-item logout pb-0" href="/logout"><img src={{asset("assets/img/icons/log-out.svg")}} class="me-2" alt="img">Logout</a>
+        <a class="dropdown-item logout pb-0" href="/auth/logout"><img src={{asset("assets/img/icons/log-out.svg")}} class="me-2" alt="img">Logout</a>
         </div>
         </div>
         </li>

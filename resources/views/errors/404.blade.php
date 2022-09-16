@@ -39,7 +39,7 @@
 <h1>404</h1>
 <h3 class="h2 mb-3"> Oops! Page not found!</h3>
 <p class="h4 font-weight-normal">The page you requested was not found.</p>
-<a href="https://dreamspos.dreamguystech.com/laravel/template/public/index" class="btn btn-primary">Back to Home</a>
+<a href="/" class="btn btn-primary">Back to Home</a>
 </div>
 </div>
 

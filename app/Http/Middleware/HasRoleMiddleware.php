@@ -6,6 +6,8 @@ use Closure;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
+use function PHPUnit\Framework\isEmpty;
+
 class HasRoleMiddleware
 {
     /**
@@ -18,10 +20,12 @@ class HasRoleMiddleware
     public function handle(Request $request, Closure $next)
     {
         $roles = Role::get();
+
         if ($request->user()->hasAnyRole($roles)){
             return $next($request);
         } else {
-            abort(403);
+            return redirect()->route('onboardWizard');
         }
+
     }
 }

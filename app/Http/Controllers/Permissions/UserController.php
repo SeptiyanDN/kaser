@@ -13,6 +13,10 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth','verified']);
+    }
 
     public function index(){
         if($user = Auth::user()->roles[0]->name == 'admin'){
@@ -72,7 +76,7 @@ class UserController extends Controller
     public function create(){
         return view('module.role_permission.assign.user.create',[
             'roles'=>Role::get(),
-            'users'=>User::has('roles')->get()
+            'users'=>User::has('roles')->where('current_tenant_id',auth()->user()->current_tenant_id)->get()
         ]);
     }
 
@@ -94,5 +98,9 @@ class UserController extends Controller
      public function update(User $user){
         $user->syncRoles(request('roles'));
         return redirect()->route('assign.user.create')->with('success','Berhasil Mengubah Role User!' );
+     }
+
+     public function profileSetting(){
+        return view('module.users.profile.index');
      }
 }

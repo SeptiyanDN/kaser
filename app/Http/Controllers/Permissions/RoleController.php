@@ -10,6 +10,10 @@ use Yajra\DataTables\Facades\DataTables;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth','verified']);
+    }
     public function index(){
         $roles = Role::get();
         $role = new Role;

@@ -102,7 +102,7 @@ Tambahkan Supplier Baru
     placeholder: "Pilih Kelurahan...",
     minimumInputLength: 2,
     ajax: {
-        url: '/kelurahan/json',
+        url: "{{route('json.kelurahan')}}",
         dataType: 'json',
         data: function (params) {
             return {

@@ -37,78 +37,52 @@
 <div class="whirly-loader"> </div>
 </div>
 <div class="main-wrapper">
-<Form action="{{ route('authentication') }}" method="POST" class="account-content">
-@csrf
+<div class="account-content">
 <div class="login-wrapper">
 <div class="login-content">
-<div class="login-userset">
+<div class="login-userset ">
 <div class="login-logo">
 <img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/logo.png" alt="img">
 </div>
 <div class="login-userheading">
-<h3>Sign In</h3>
-<h4>Please login to your account</h4>
+<h3>Masukan Password Baru Anda</h3>
+<h4>Don’t warry! it happens. Please enter the address <br>
+associated with your account.</h4>
 </div>
 @if(session('message'))
 <div class="alert alert-success">
     {{session('message')}}
 </div>
 @endif
+<form action={{route('reset.password')}} method="POST">
+    @csrf
+    <input type="hidden" name="token" value="{{ $token }}">
+
 <div class="form-login">
-<label>Email</label>
+<label>Password Baru Anda</label>
 <div class="form-addons">
-<input type="text" name="email" id="Email" value="admin@example.com">
+<input type="text" name="password" id="password" placeholder="Enter your password">
 <img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/mail.svg" alt="img">
 </div>
-<div class="text-danger pt-2">
-</div>
 </div>
 <div class="form-login">
-<label>Password</label>
-<div class="pass-group">
-<input type="password" class="pass-input" name="password" id="password" value="123456">
-<span class="fas toggle-password fa-eye-slash"></span>
-</div>
- <div class="text-danger pt-2">
-</div>
+    <label>Komfirmasi Password Baru Anda</label>
+    <div class="form-addons">
+    <input type="text" name="password_confirmation" id="password_confirmation" placeholder="Enter your password">
+    <img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/mail.svg" alt="img">
+    </div>
 </div>
 <div class="form-login">
-<div class="alreadyuser">
-<h4><a href={{route('forgot.password')}} class="hover-a">Forgot Password?</a></h4>
+<button type="submit" class="btn btn-primary">Submit</button>
 </div>
-</div>
-<div class="form-login">
-<button class="btn btn-login" type="submit">Sign In</button>
-</div>
-<div class="signinform text-center">
-<h4>Don’t have an account? <a href={{route('register')}} class="hover-a">Sign Up</a></h4>
-</div>
-<div class="form-setlogin">
-<h4>Or sign up with</h4>
-</div>
-<div class="form-sociallink">
-<ul>
-<li>
-<a href="javascript:void(0);">
-<img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/google.png" class="me-2" alt="google">
-Sign Up using Google
-</a>
-</li>
-<li>
-<a href="javascript:void(0);">
-<img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/facebook.png" class="me-2" alt="google">
-Sign Up using Facebook
-</a>
-</li>
-</ul>
-</div>
+</form>
 </div>
 </div>
 <div class="login-img">
 <img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/login.jpg" alt="img">
 </div>
 </div>
-</Form>
+</div>
 </div>
 
 

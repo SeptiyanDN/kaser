@@ -24,7 +24,7 @@ class RegisterController extends Controller
         Session::flush();
         Auth::logout();
 
-        return redirect(config('app.url'))->with('session','Berhasil Logout');
+        return redirect('/auth/login');
     }
     public function kelurahanJson(Request $request)
     {
@@ -56,7 +56,12 @@ class RegisterController extends Controller
     }
     public function register(){
 
-        return view('/auth.register');
+        return view('auth.register');
+    }
+
+    public function onboardWizard(){
+
+        return view('auth.onboardWizard');
     }
 
     public function registration(Request $request){
@@ -67,6 +72,13 @@ class RegisterController extends Controller
             'telepon' => $request->telepon,
             'password' => Hash::make($request->password),
         ]);
+        Auth::login($user);
+
+
+        return redirect()->route('onboardWizard');
+    }
+
+    public function finishOnboardWirzard(Request $request){
         $randomString = Str::random(5);
         $strtolower = strtolower(str_replace(' ','-',$request->nama_bisnis));
         $tenant = Tenant::create([
@@ -77,23 +89,23 @@ class RegisterController extends Controller
             'kelurahan' => $request->kelurahan,
             'kode_pos' => $request->kode_pos
         ]);
+        $user = auth()->user();
 
-        $user->update(['current_tenant_id' => $tenant->id]);
-        if($user->email == 'business.septiyan@gmail.com'){
-            $user->assignRole('admin');
-        } else {
-            $user->assignRole('tamu');
-        }
+        DB::table('users')
+        ->where('id',$user->id)
+        ->update(['current_tenant_id' => $tenant->id]);
+
         DB::table('tenant_user')->insert([
             'tenant_id' => $tenant->id,
             'user_id' => $user->id,
             'pemilik' =>$user->id
         ]);
-        Auth::login($user);
+
+        $user->assignRole('admin');
+
 
         $mainDomain = str_replace('://' , '://' . $tenant->subdomain . '.' , config('app.url'));
         return redirect ($mainDomain . RouteServiceProvider::HOME);
-
     }
 
     public function registrasiTenant(Request $request) {

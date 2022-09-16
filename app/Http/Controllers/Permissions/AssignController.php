@@ -9,6 +9,10 @@ use Spatie\Permission\Models\Role;
 
 class AssignController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth','verified']);
+    }
     public function create(){
         return view('module.role_permission.assign.create',[
         'roles' => Role::get(),

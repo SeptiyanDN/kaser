@@ -79,6 +79,15 @@
         <div class="text-danger pt-2">
         </div>
     </div>
+    <div class="form-login col-lg-12">
+        <label>Handphone</label>
+        <div class="form-addons">
+        <input type="text" name="telepon" id="telepon" class="form-control">
+        <img src={{asset("assets/img/icons/mail.svg")}} alt="img">
+        </div>
+        <div class="text-danger pt-2">
+        </div>
+    </div>
     <div class="form-login col-lg-6">
             <label>Password</label>
             <div class="pass-group">
@@ -95,46 +104,7 @@
         </div>
     </div>
     </div>
-    <div class="form-login col-lg-6">
-        <label>Nama Bisnis</label>
-        <div class="form-addons">
-        <input type="text" id="nama_bisnis" name="nama_bisnis"  class="form-control" >
-        <div class="text-danger pt-2">
-        </div>
-        </div>
-    </div>
-    <div class="form-login col-lg-6">
-        <label>Telepon</label>
-        <div class="form-addons">
-        <input type="text" id="telepon" name="telepon"  class="form-control" >
-        <div class="text-danger pt-2">
-        </div>
-        </div>
-    </div>
-    <div class="form-login col-lg-12">
-        <label>Alamat</label>
-        <div class="form-addons">
-            <textarea name="alamat" id="alamat" class="form-control"></textarea>
-        <div class="text-danger pt-2">
-        </div>
-        </div>
-    </div>
-    <div class="form-login col-lg-12">
-        <label>Kelurahan</label>
-        <div class="form-addons">
-            <select id="kelurahan" name="kelurahan" class="form-control" ></select>
-            <div class="text-danger pt-2">
-        </div>
-        </div>
-    </div>
-    <div class="form-login col-lg-12">
-        <label>Kode Pos</label>
-        <div class="form-addons">
-            <input name="kode_pos" id="kode_pos" class="form-control">
-        <div class="text-danger pt-2">
-        </div>
-        </div>
-    </div>
+
 <button type="submit" class="btn btn-primary">Registrasi</button>
 
 </div>
@@ -206,7 +176,7 @@ Sign Up using Facebook
     placeholder: "Pilih Kelurahan...",
     minimumInputLength: 2,
     ajax: {
-        url: '/kelurahan/json',
+        url: "{{route('json.kelurahan')}}",
         dataType: 'json',
         data: function (params) {
             return {

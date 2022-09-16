@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('mereks', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_merek');
+            $table->foreignId('tenant_id')->references('id')->on('tenants');
             $table->timestamps();
         });
     }

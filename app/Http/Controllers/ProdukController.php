@@ -12,9 +12,14 @@ class ProdukController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware(['auth','verified']);
+    }
     public function index()
     {
-        return view('module.produk.index');
+        $products = Produk::with('kategori','merek')->get();
+        return view('module.produk.index',compact('products'));
     }
 
     /**
@@ -35,7 +40,19 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $produk = Produk::create([
+        'nama_produk'=> $request->nama_produk,
+        'kategori_id'=> $request->kategori_id,
+        'merek_id'=> $request->merek_id,
+        'harga_jual'=> $request->harga_jual,
+        'harga_modal'=> $request->harga_modal,
+        'sku'=> $request->sku,
+        'satuan'=> $request->satuan,
+        'stok'=> $request->stok,
+        'minimum_stok'=> $request->minimum_stok,
+        'favorit'=> $request->favorit,
+        'notifikasi_stok_minimum'=> $request->notifikasi_stok_minimum,
+       ]);
     }
 
     /**
@@ -57,7 +74,10 @@ class ProdukController extends Controller
      */
     public function edit(Produk $produk)
     {
-        //
+        return view('module.produk.editproduk',[
+            'produk'=>$produk,
+            'produks'=>Produk::get(),
+        ]);
     }
 
     /**
@@ -69,7 +89,21 @@ class ProdukController extends Controller
      */
     public function update(Request $request, Produk $produk)
     {
-        //
+        $produk->update([
+            'nama_produk'=> $request->nama_produk,
+            'kategori_id'=> $request->kategori_id,
+            'merek_id'=> $request->merek_id,
+            'harga_jual'=> $request->harga_jual,
+            'harga_modal'=> $request->harga_modal,
+            'sku'=> $request->sku,
+            'satuan'=> $request->satuan,
+            'stok'=> $request->stok,
+            'minimum_stok'=> $request->minimum_stok,
+            'favorit'=> $request->favorit,
+            'notifikasi_stok_minimum'=> $request->notifikasi_stok_minimum,
+        ]);
+
+        return redirect()->route('index.produk')->with('success','Berhasil Mengubah Data Produk');
     }
 
     /**
@@ -78,8 +112,10 @@ class ProdukController extends Controller
      * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produk $produk)
+    public function remove($id)
     {
-        //
+        $produk = Produk::find($id);
+        $produk->delete();
+
     }
 }

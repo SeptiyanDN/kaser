@@ -122,17 +122,26 @@ Managemen Produk
                 </tr>
             </thead>
             <tbody>
+                @foreach ($products as $produk)
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                    <td>Tidak ada</td>
+                    <td>{{$produk->nama_produk}}</td>
+                    <td>{{$produk->kategori->nama_kategori}}</td>
+                    <td>{{$produk->harga_jual}}</td>
+                    <td>{{$produk->harga_modal}}</td>
+                    <td>{{$produk->stok}}</td>
+                    <td>{{$produk->merek->nama_merek}}</td>
+                    <td>{{$produk->favorit}}</td>
+                    <td>
+                        <a class="me-3" href={{route('edit.produk',$produk)}}>
+                            <img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/edit.svg" alt="img">
+                        </a>
+                        <a class="me-3" onclick="deleteData('{{route('remove.produk',$produk->id)}}')">
+                            <img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/delete.svg" alt="img">
+                        </a>
+                    </td>                </tr>
+                @endforeach
+
             </tbody>
     </table>
     </div>
