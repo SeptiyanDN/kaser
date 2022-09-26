@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-Dashboard CMS Admin
+Dashboard CMS Admin1
 @endsection
 
 @section('content')

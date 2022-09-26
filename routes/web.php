@@ -14,9 +14,12 @@ use App\Http\Controllers\Permissions\RoleController;
 use App\Http\Controllers\Permissions\UserController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TelegramController;
 use App\Http\Controllers\TenantController;
+use Illuminate\Support\Env;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Telegram\Bot\Api;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +31,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/telegram',[TelegramController::class,'callback'])->name('telegram.connect');
 
 Auth::routes(['verify' => true]);
 
@@ -88,7 +93,7 @@ Route::middleware(['has.role','auth'])->group(function(){
     });
 
     Route::prefix('suppliers')->group(function(){
-        Route::get('/',[SupplierController::class,'index']);
+        Route::get('/',[SupplierController::class,'index'])->name('index.supplier');
         Route::get('/tambah',[SupplierController::class,'create']);
         Route::post('/tambah',[SupplierController::class,'store'])->name('tambah.supplier');
     });

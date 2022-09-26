@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produk;
 use Illuminate\Http\Request;
-
+use App\Helpers\NotificationHelpers;
 class ProdukController extends Controller
 {
     /**
@@ -53,6 +53,11 @@ class ProdukController extends Controller
         'favorit'=> $request->favorit,
         'notifikasi_stok_minimum'=> $request->notifikasi_stok_minimum,
        ]);
+
+        $message = "Berhasil Menambahkan Produk";
+        NotificationHelpers::sendNotification($produk,$message);
+
+       return redirect()->route('index.produk')->with('success','data berhasil di simpan');
     }
 
     /**

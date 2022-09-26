@@ -48,7 +48,7 @@ class SupplierController extends Controller
             'email_perwakilan'=>$request->email_perwakilan,
         ]);
 
-        dd($supplier);
+        return redirect()->route('index.supplier')->with('success','Berhasil Menambahkan Supplier');
     }
 
     /**

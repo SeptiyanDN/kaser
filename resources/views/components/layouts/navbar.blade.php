@@ -157,6 +157,8 @@
         <a class="dropdown-item" href="generalsettings.html"><i class="me-2" data-feather="settings"></i>Settings</a>
         <hr class="m-0">
         <a class="dropdown-item logout pb-0" href="/auth/logout"><img src={{asset("assets/img/icons/log-out.svg")}} class="me-2" alt="img">Logout</a>
+        <button class="dropdown-item btn btn-primary text-white" href="/">Lepas Telegram</button>
+
         </div>
         </div>
         </li>

@@ -6,10 +6,11 @@ use App\Traits\FilterByTenant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Notifications\Notifiable;
 
 class Produk extends Model
 {
-    use HasFactory, FilterByTenant;
+    use HasFactory, FilterByTenant, Notifiable;
     protected $fillable = [
         'nama_produk',
         'kategori_id',
@@ -31,4 +32,8 @@ class Produk extends Model
     public function merek(){
         return $this->hasOne(Merek::class, 'id', 'merek_id');
     }
+    public function routeNotificationForTelegram()
+{
+    return $this->nama_produk;
+}
 }
