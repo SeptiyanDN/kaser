@@ -12,6 +12,7 @@ class Produk extends Model
 {
     use HasFactory, FilterByTenant, Notifiable;
     protected $fillable = [
+        'image',
         'nama_produk',
         'kategori_id',
         'merek_id',
@@ -27,13 +28,10 @@ class Produk extends Model
     ];
 
     public function kategori(){
-        return $this->hasOne(Kategori::class, 'id', 'kategori_id');
+        return $this->belongsTo(Kategori::class, );
     }
     public function merek(){
-        return $this->hasOne(Merek::class, 'id', 'merek_id');
+        return $this->belongsTo(Merek::class,);
     }
-    public function routeNotificationForTelegram()
-{
-    return $this->nama_produk;
-}
+
 }

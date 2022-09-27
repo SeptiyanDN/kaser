@@ -39,7 +39,11 @@ class kategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kategori = new Kategori();
+        $kategori->nama_kategori = $request->nama_kategori;
+        $kategori->save();
+
+        return response()->json('Data berhasil Disimpan', 200);
     }
 
     /**

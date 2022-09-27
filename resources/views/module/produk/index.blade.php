@@ -124,7 +124,10 @@ Managemen Produk
             <tbody>
                 @foreach ($products as $produk)
                 <tr>
-                    <td>Tidak ada</td>
+                    <td>
+                        <img src="{{asset('storage/images/tenant/'.auth()->user()->current_tenant_id.'/'.$produk->image)}}" style="width: 100px; height:100px"alt="">
+
+                    </td>
                     <td>{{$produk->nama_produk}}</td>
                     <td>{{$produk->kategori->nama_kategori}}</td>
                     <td>{{$produk->harga_jual}}</td>

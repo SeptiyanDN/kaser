@@ -39,7 +39,11 @@ class MerekController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $merek = new Merek();
+        $merek->nama_merek = $request->nama_merek;
+        $merek->save();
+
+        return response()->json('Data berhasil Disimpan', 200);
     }
 
     /**

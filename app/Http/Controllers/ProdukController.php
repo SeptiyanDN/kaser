@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use App\Helpers\NotificationHelpers;
+use App\Models\Kategori;
+use App\Models\Merek;
+use Illuminate\Support\Str;
+
 class ProdukController extends Controller
 {
     /**
@@ -29,7 +33,9 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        return view('module.produk.createproduk');
+        $kategori = Kategori::all();
+        $merek = Merek::all();
+        return view('module.produk.createproduk',compact('kategori','merek'));
     }
 
     /**
@@ -40,7 +46,24 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
+            // $file = $request->file('image');
+            // $nama = $request->file('image')->getClientOriginalName();
+
+            // $file->move(public_path("/image/produk/tenant/".auth()->user()->current_tenant_id), $nama);
+
+              // Get filename with the extension
+              $filenameWithExt = $request->file('image')->getClientOriginalName();
+              //Get just filename
+              $filename = Str::lower(str_replace(' ', '-', $request->nama_produk));
+              // Get just ext
+              $extension = $request->file('image')->getClientOriginalExtension();
+              // Filename to store
+              $fileNameToStore = 'produk_'.$filename.'_'.time().'.'.$extension;
+              // Upload Image
+              $path = $request->file('image')->storeAs('public/images/tenant/'.auth()->user()->current_tenant_id,$fileNameToStore);
+
        $produk = Produk::create([
+        'image' => $fileNameToStore,
         'nama_produk'=> $request->nama_produk,
         'kategori_id'=> $request->kategori_id,
         'merek_id'=> $request->merek_id,
@@ -53,6 +76,7 @@ class ProdukController extends Controller
         'favorit'=> $request->favorit,
         'notifikasi_stok_minimum'=> $request->notifikasi_stok_minimum,
        ]);
+
 
         $message = "Berhasil Menambahkan Produk";
         NotificationHelpers::sendNotification($produk,$message);

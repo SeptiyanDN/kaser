@@ -27,6 +27,17 @@ Profile Settings
     <div class="profile-contentname">
     <h2>{{auth()->user()->name}}</h2>
     <h4>Updates Your Photo and Personal Details.</h4>
+    @if (auth()->user()->telegram_chat_id == null)
+    <script
+    async
+    type="application/javascript"
+    src="https://telegram.org/js/telegram-widget.js?7"
+    data-telegram-login="{{ config('services.telegram-bot-api.name') }}"
+    data-size="large"
+    data-auth-url="{{ route('telegram.connect') }}"
+    data-request-access="write"
+></script>
+@endif
     </div>
     </div>
     <div class="ms-auto">

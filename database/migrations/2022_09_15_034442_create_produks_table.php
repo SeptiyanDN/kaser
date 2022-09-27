@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('produks', function (Blueprint $table) {
             $table->id();
+            $table->string('image');
             $table->string('nama_produk');
             $table->foreignId('kategori_id')->nullable()->references('id')->on('kategoris');
             $table->foreignId('merek_id')->nullable()->references('id')->on('mereks');
