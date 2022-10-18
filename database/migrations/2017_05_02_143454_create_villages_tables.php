@@ -24,7 +24,7 @@ class CreateVillagesTables extends Migration
             // $table->char('id', 10)->index();
             $table->id();
 
-            $table->char('district_id', 7);
+            $table->string('district_id', 7);
             $table->string('name', 50);
             $table->foreignId('district_id')
                 ->references('id')
