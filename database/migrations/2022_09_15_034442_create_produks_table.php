@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('merek_id')->nullable()->references('id')->on('mereks');
             $table->string('harga_jual');
             $table->string('harga_modal');
+            $table->tinyInteger('diskon')->default(0);
             $table->string('sku');
             $table->string('satuan');
             $table->string('stok');

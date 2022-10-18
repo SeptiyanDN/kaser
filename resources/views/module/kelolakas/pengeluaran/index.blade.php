@@ -1,12 +1,12 @@
 @extends('layouts.master')
 @section('title')
-Manage Produk
+Pengeluaran Outlet
 @endsection
 @section('content')
     <div class="page-header">
     <div class="page-title">
-    <h4>Manage Produk</h4>
-    <h6>Manage Produk</h6>
+    <h4>Pengeluaran Outlet</h4>
+    <h6>Pengeluaran Outlet</h6>
     </div>
     <div class="row">
         <div class="col-sm-12">
@@ -18,8 +18,8 @@ Manage Produk
     <div class="table-top">
     <div class="search-set">
     <div class="search-input">
-        <a href={{route('tambah.produk')}} class="btn btn-primary btn-sm">Tambah Transaksi Baru</a>
-        <a type="button" onclick="deleteSelected('{{ route('produk.delete_selected') }}')" class="btn btn-secondary btn-sm">Hapus</a>
+        <a onclick="addForm('{{route('pengeluaran.store')}}')" class="btn btn-primary btn-sm">Tambah Transaksi Baru</a>
+        <a type="button" onclick="deleteSelected('{{ route('pengeluaran.delete_selected') }}')" class="btn btn-secondary btn-sm">Hapus</a>
 
     </div>
     </div>
@@ -61,17 +61,11 @@ Manage Produk
                         <th width="1%">
                             <input type="checkbox" name="select_all" id="select_all">
                         </th>
-                        <th>No</th>
-                        <th>Foto Produk</th>
-                        <th>Kode Produk</th>
-                        <th>Nama Produk</th>
-                        <th>Kategori</th>
-                        <th>Merk</th>
-                        <th>Harga Beli</th>
-                        <th>Harga Jual</th>
-                        <th>Diskon</th>
-                        <th>Stok</th>
-                        <th>Action</i></th>
+                        <th width="5%">No</th>
+                        <th>Tanggal</th>
+                        <th>Jenis Pengeluaran</th>
+                        <th>Nominal</th>
+                        <th width="10%">Action</i></th>
                     </thead>
                 </table>
             </div>
@@ -80,7 +74,7 @@ Manage Produk
     </div>
 
     </div>
-
+@includeIf('module.kelolakas.pengeluaran.form')
 @endsection
 @push('scripts')
 <script>
@@ -100,24 +94,34 @@ Manage Produk
 				info: "_START_ - _END_ of _TOTAL_ items",
 			 },
             ajax: {
-                url: '{{ route('produk.data') }}',
+                url: '{{ route('pengeluaran.data') }}',
 
             },
             columns: [
                 {data: 'select_all', searchable: false, sortable: false},
                 {data: 'DT_RowIndex'},
-                {data: 'image'},
-                {data: 'sku'},
-                {data: 'nama_produk'},
-                {data: 'kategori'},
-                {data: 'merek'},
-                {data: 'harga_beli'},
-                {data: 'harga_jual'},
-                {data: 'diskon'},
-                {data: 'stok'},
+                {data: 'created_at'},
+                {data: 'deskripsi_pengeluaran'},
+                {data: 'nominal'},
                 {data: 'Action'},
             ]
         });
+
+        $('#modal-form').validator().on('submit', function (e){
+            if (! e.preventDefault()){
+                $.post($('#modal-form form').attr('action'), $('#modal-form form').serialize())
+            swal({
+            title: "Berhasil!",
+            text: "Data anda telah tersimpan",
+            type: "success",
+            confirmButtonColor: "#FF9F43"
+            },function () {
+                $('#modal-form').modal('hide');
+                table.ajax.reload();
+                });
+            }
+        });
+
         $('[name=select_all]').on('click', function (){
             $(':checkbox').prop('checked', this.checked);
         });
@@ -145,6 +149,55 @@ Manage Produk
         toastr.error('Pilih data yang akan di hapus!','PERHATIAN')
             return;
         }
+    }
+    function addForm(url){
+        $('#modal-form').modal('show');
+        $('#modal-form .modal-title').text('Tambah Pengeluaran Baru');
+
+        $('#modal-form form')[0].reset();
+        $('#modal-form form').attr('action', url);
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=deskripsi]').focus();
+    }
+    function editForm(url){
+        $('#modal-form').modal('show');
+        $('#modal-form .modal-title').text('Edit Pemasukan');
+
+        $('#modal-form form')[0].reset();
+        $('#modal-form form').attr('action', url);
+        $('#modal-form [name=_method]').val('put');
+        $('#modal-form [name=deskripsi]').focus();
+
+        $.get(url)
+        .done((response) => {
+            $('#modal-form [name=deskripsi_pemasukan]').val(response.deskripsi_pemasukan);
+            $('#modal-form [name=nominal]').val(response.nominal);
+        })
+        .fail((errors) => {
+            alert('tidak dapat menampilkan data');
+            return;
+        });
+    }
+    function deleteData(url){
+        swal({
+            title: "Peringatan!",
+            text: "Apakah anda yakin ingin menghapus data ini?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Ya, Hapus",
+            closeOnConfirm: false
+        },
+        function () {
+        $.post(url, {
+        '_token': $('[name=csrf-token]').attr('content'),
+        '_method': 'delete'
+        })
+        .done((response) => {
+        swal("Deleted!", "Data anda telah terhapus", "success");
+        table.ajax.reload();
+        });
+        });
     }
 </script>
 @endpush

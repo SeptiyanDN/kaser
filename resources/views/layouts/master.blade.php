@@ -13,6 +13,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
 <link href={{ asset("assets/css/plugins/dataTables/datatables.min.css")}} rel="stylesheet">
 
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href={{asset("assets/css/bootstrap.min.css")}}>
 <link rel="stylesheet" href={{asset("assets/plugins/fontawesome/css/fontawesome.min.css")}}>

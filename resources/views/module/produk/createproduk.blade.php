@@ -51,25 +51,20 @@ Tambahkan Produk Baru
             </p>
             </div>
     </div>
-    <div class="col-lg-3 col-sm-6 col-12">
+    <div class="col-lg-4 col-sm-6 col-12">
     <div class="form-group">
     <label>Harga Jual</label>
     <input type="text" name="harga_jual" class="form-control">
     </div>
     </div>
-    <div class="col-lg-3 col-sm-6 col-12">
+    <div class="col-lg-4 col-sm-6 col-12">
     <div class="form-group">
     <label>Harga Modal</label>
      <input type="text"name="harga_modal" class="form-control">
     </div>
     </div>
-    <div class="col-lg-3 col-sm-6 col-12">
-    <div class="form-group">
-    <label>Kode Produk (SKU)</label>
-    <input type="text" name="sku" class="form-control">
-    </div>
-    </div>
-    <div class="col-lg-3 col-sm-6 col-12">
+
+    <div class="col-lg-4 col-sm-6 col-12">
         <div class="form-group">
         <label>Satuan</label>
         <select name="satuan" class="form-control select">
@@ -78,16 +73,22 @@ Tambahkan Produk Baru
         </select>
         </div>
     </div>
-    <div class="col-lg-5 col-sm-5 col-12">
+    <div class="col-lg-4 col-sm-5 col-12">
         <div class="form-group">
         <label>Jumlah Stock</label>
          <input type="text" name="stok" class="form-control">
         </div>
     </div>
-    <div class="col-lg-5 col-sm-5 col-12">
+    <div class="col-lg-4 col-sm-5 col-12">
         <div class="form-group">
         <label>Minimum Stock</label>
         <input type="text" name="minimum_stok" class="form-control">
+        </div>
+    </div>
+    <div class="col-lg-2 col-sm-5 col-12">
+        <div class="form-group">
+        <label>Diskon</label>
+        <input type="text" name="diskon" class="form-control">
         </div>
     </div>
     <div class="col-lg-2 col-sm-6 col-12">

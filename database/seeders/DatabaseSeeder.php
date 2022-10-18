@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
         IndoRegionDistrictSeeder::class,
         IndoRegionVillageSeeder::class,
         RolesAndPermissionsSeeder::class,
+        deskripsi_pemasukan::class,
+        DeskripsiPengeluaranSeeder::class,
         ]);
     }
 }

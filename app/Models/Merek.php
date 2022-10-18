@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Merek extends Model
 {
     use HasFactory, FilterByTenant;
+    protected $fillable = ['nama_merek'];
 
     public function products(){
         return $this->hasMany(Produk::class);

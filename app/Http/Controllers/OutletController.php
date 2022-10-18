@@ -10,11 +10,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 class OutletController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function __construct()
     {
         $this->middleware(['auth','verified']);
@@ -23,7 +19,6 @@ class OutletController extends Controller
     {
         $search = $request->search;
 
-        // if($search != null){
         $results = DB::table('villages')
         ->leftJoin('districts','villages.district_id','=','districts.id')
         ->leftJoin('regencies','districts.regency_id', '=','regencies.id')
@@ -36,7 +31,6 @@ class OutletController extends Controller
             'provinces.name as provinces_name'
         )
         ->get();
-        // }
 
         $response = array();
         foreach($results as $result) {
@@ -79,24 +73,12 @@ class OutletController extends Controller
     }
 
 
-    /**
-     *
-     *
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $filenameWithExt = $request->file('foto')->getClientOriginalName();
@@ -117,36 +99,17 @@ class OutletController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Outlet  $outlet
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $outlet = Outlet::find($id);
         return response()->json($outlet);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Outlet  $outlet
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Outlet $outlet)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Outlet  $outlet
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $outlet = Outlet::find($id);
@@ -155,12 +118,6 @@ class OutletController extends Controller
         return response()->json('Data berhasil Disimpan', 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Outlet  $outlet
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $outlet = outlet::find($id);

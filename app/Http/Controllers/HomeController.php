@@ -17,12 +17,6 @@ class HomeController extends Controller
     }
     public function index()
     {
-        // $user = auth()->user();
-        // DB::table('users')
-        // ->where('id',$user->id)
-        // ->update(['current_tenant_id' => 1]);
-
-        // dd($user);
         $supplier = Supplier::count();
         $tenant = Tenant::join('tenant_user','tenants.id','=','tenant_user.tenant_id')
         ->where('tenant_user.user_id',auth()->user()->id)

@@ -72,9 +72,8 @@
         <li class="submenu">
             <a href="javascript:void(0);"><img src={{asset("assets/img/icons/transfer1.svg")}} alt="img"><span> Kelola Kas</span> <span class="menu-arrow"></span></a>
             <ul>
-            <li><a href="transferlist.html">Transfer List</a></li>
-            <li><a href="addtransfer.html">Add Transfer </a></li>
-            <li><a href="importtransfer.html">Import Transfer </a></li>
+            <li><a href="{{route('pengeluaran.index')}}">Pengeluaran Outlet</a></li>
+            <li><a href="{{route('pemasukan.index')}}">Pemasukan Outlet</a></li>
             </ul>
         </li>
         <li class="submenu">

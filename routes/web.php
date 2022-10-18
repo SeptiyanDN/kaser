@@ -8,6 +8,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\kategoriController;
 use App\Http\Controllers\MerekController;
 use App\Http\Controllers\OutletController;
+use App\Http\Controllers\PemasukanController;
+use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\Permissions\AssignController;
 use App\Http\Controllers\Permissions\PermissionController;
 use App\Http\Controllers\Permissions\RoleController;
@@ -56,7 +58,27 @@ Route::middleware(['has.role','auth'])->group(function(){
 
     Route::get('/',[HomeController::class,'index']);
     Route::get('/onboardWizard',[RegisterController::class,'onboardWizard']);
+    Route::prefix('kelola-kas')->group(function(){
+        Route::prefix('pemasukan')->group(function(){
+            Route::get('/',[PemasukanController::class,'index'])->name('pemasukan.index');
+            Route::get('/json',[PemasukanController::class,'data'])->name('pemasukan.data');
+            Route::post('/',[PemasukanController::class,'store'])->name('pemasukan.store');
+            Route::get('/{id}',[PemasukanController::class,'show'])->name('pemasukan.show');
+            Route::put('/{id}',[PemasukanController::class,'update'])->name('pemasukan.update');
+            Route::delete('/{id}',[PemasukanController::class,'destroy'])->name('pemasukan.destroy');
+            Route::post('/delete-selected', [PemasukanController::class, 'deleteSelected'])->name('pemasukan.delete_selected');
+        });
 
+        Route::prefix('pengeluaran')->group(function(){
+            Route::get('/',[PengeluaranController::class,'index'])->name('pengeluaran.index');
+            Route::get('/json',[PengeluaranController::class,'data'])->name('pengeluaran.data');
+            Route::post('/',[PengeluaranController::class,'store'])->name('pengeluaran.store');
+            Route::get('/{id}',[PengeluaranController::class,'show'])->name('pengeluaran.show');
+            Route::put('/{id}',[PengeluaranController::class,'update'])->name('pengeluaran.update');
+            Route::delete('/{id}',[PengeluaranController::class,'destroy'])->name('pengeluaran.destroy');
+            Route::post('/delete-selected', [PengeluaranController::class, 'deleteSelected'])->name('pengeluaran.delete_selected');
+        });
+    });
     Route::prefix('products')->group(function(){
         Route::prefix('kategori')->group(function(){
             Route::get('/',[kategoriController::class,'index']);
@@ -67,11 +89,15 @@ Route::middleware(['has.role','auth'])->group(function(){
             Route::post('/',[MerekController::class,'store'])->name('tambah.merek');
         });
         Route::get('/',[ProdukController::class,'index'])->name('index.produk');
+        Route::get('/json',[ProdukController::class,'data'])->name('produk.data');
+
         Route::get('/tambah',[ProdukController::class,'create']);
         Route::post('/tambah',[ProdukController::class,'store'])->name('tambah.produk');
         Route::delete('/{id}',[ProdukController::class,'remove'])->name('remove.produk');
         Route::get('/{produk}/edit',[ProdukController::class,'edit'])->name('edit.produk');
         Route::put('/{produk}/edit',[ProdukController::class,'update']);
+        Route::delete('/{produk}',[ProdukController::class,'remove'])->name('remove.produk');
+        Route::post('/delete-selected', [ProdukController::class, 'deleteSelected'])->name('produk.delete_selected');
     });
 
     Route::prefix('users')->group(function(){
