@@ -24,7 +24,7 @@ class CreateRegenciesTables extends Migration
             $table->char('id', 4)->index();
             $table->char('province_id', 2);
             $table->string('name', 50);
-            $table->foreignId('province_id')
+            $table->foreign('province_id')
                 ->references('id')
                 ->on('provinces')
                 ->onUpdate('cascade')->onDelete('restrict');
