@@ -26,7 +26,7 @@ class CreateVillagesTables extends Migration
 
             $table->char('district_id', 7);
             $table->string('name', 50);
-            $table->foreign('district_id')
+            $table->foreignId('district_id')
                 ->references('id')
                 ->on('districts')
                 ->onUpdate('cascade')->onDelete('restrict');

@@ -25,7 +25,7 @@ class CreateDistrictsTables extends Migration
             $table->id();
             $table->char('regency_id', 4);
             $table->string('name', 50);
-            $table->foreign('regency_id')
+            $table->foreignId('regency_id')
                 ->references('id')
                 ->on('regencies')
                 ->onUpdate('cascade')->onDelete('restrict');
