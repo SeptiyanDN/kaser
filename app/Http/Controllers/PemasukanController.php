@@ -57,6 +57,13 @@ class PemasukanController extends Controller
 
     public function store(Request $request)
     {
+         /*
+        TODO : Menambahkan Keterangan & Image pada table Pemasukan
+        TODO : Memperbaiki CREATE DATA , file tidak bisa terkirim kemungkinan salah di function addForm (AJAX)
+        TODO: Menambahkan Properti Image & Keterangan
+        TODO : Edit Form Pemasukan Menambahkan Properti Image & Keterangan
+        TODO : Edit Controller
+        */
         $pemasukan = Pemasukan::create($request->all());
 
         return response()->json('Data berhasil Disimpan', 200);

@@ -53,7 +53,7 @@ Pengeluaran Outlet
     </div>
     </div>
     </div>
-     <form class="form-produk" method="post">
+     <form enctype="multipart/form-data" class="form-pengeluaran" method="post">
             @csrf
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover">
@@ -95,7 +95,6 @@ Pengeluaran Outlet
 			 },
             ajax: {
                 url: '{{ route('pengeluaran.data') }}',
-
             },
             columns: [
                 {data: 'select_all', searchable: false, sortable: false},
@@ -109,6 +108,7 @@ Pengeluaran Outlet
 
         $('#modal-form').validator().on('submit', function (e){
             if (! e.preventDefault()){
+                console.log(e);
                 $.post($('#modal-form form').attr('action'), $('#modal-form form').serialize())
             swal({
             title: "Berhasil!",
@@ -127,6 +127,17 @@ Pengeluaran Outlet
         });
 
     })
+
+    function addForm(url){
+        $('#modal-form').modal('show');
+        $('#modal-form .modal-title').text('Tambah Pengeluaran Baru');
+
+        $('#modal-form form')[0].reset();
+        $('#modal-form form').attr('action', url);
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=deskripsi]').focus();
+    }
+
     function deleteSelected(url){
         if ($('input:checked').length >= 1) {
             swal({
@@ -139,7 +150,7 @@ Pengeluaran Outlet
             closeOnConfirm: true
             },
                 function () {
-                    $.post(url, $('.form-produk').serialize())
+                    $.post(url, $('.form-pengeluaran').serialize())
             .done((response) => {
             table.ajax.reload();
             toastr.success('Data anda telah terhapus','BERHASIL')
@@ -150,18 +161,10 @@ Pengeluaran Outlet
             return;
         }
     }
-    function addForm(url){
-        $('#modal-form').modal('show');
-        $('#modal-form .modal-title').text('Tambah Pengeluaran Baru');
 
-        $('#modal-form form')[0].reset();
-        $('#modal-form form').attr('action', url);
-        $('#modal-form [name=_method]').val('post');
-        $('#modal-form [name=deskripsi]').focus();
-    }
     function editForm(url){
         $('#modal-form').modal('show');
-        $('#modal-form .modal-title').text('Edit Pemasukan');
+        $('#modal-form .modal-title').text('Edit Pengeluaran');
 
         $('#modal-form form')[0].reset();
         $('#modal-form form').attr('action', url);
@@ -170,7 +173,7 @@ Pengeluaran Outlet
 
         $.get(url)
         .done((response) => {
-            $('#modal-form [name=deskripsi_pemasukan]').val(response.deskripsi_pemasukan);
+            $('#modal-form [name=deskripsi_pengeluaran]').val(response.deskripsi_pengeluaran);
             $('#modal-form [name=nominal]').val(response.nominal);
         })
         .fail((errors) => {

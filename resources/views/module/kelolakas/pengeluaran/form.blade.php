@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <form action="" class='form-horizontal' method="POST">
+      <form  action="" class='form-horizontal' method="POST" enctype="multipart/form-data">
         @csrf
         @method('post')
         <div class="modal-content">
@@ -24,9 +24,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="deskripsi" class="col-sm-12 control-label">Bukti Transaksi</label>
+                    <label for="image" class="col-sm-12 control-label">Bukti Transaksi</label>
                     <div class="col-sm-12">
-                        <input class="form-control-file" name="image" type="file" id="image">
+                        <input type="file" name="image" id="image" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">

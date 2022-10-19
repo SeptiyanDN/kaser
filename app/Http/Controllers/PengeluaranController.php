@@ -6,6 +6,7 @@ use App\Helpers\Helpers;
 use App\Models\DeskripsiPengeluaran;
 use App\Models\Pengeluaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PengeluaranController extends Controller
 {
@@ -51,7 +52,27 @@ class PengeluaranController extends Controller
 
     public function store(Request $request)
     {
-        Pengeluaran::create($request->all());
+
+        /*
+        TODO : Menambahkan Keterangan & Image pada table Pengeluaran
+        TODO : Memperbaiki CREATE DATA , file tidak bisa terkirim kemungkinan salah di function addForm (AJAX)
+        */
+        //Get just filename
+        $filename = Str::lower(str_replace(' ', '-', $request->nama_produk));
+        // Get just ext
+        $extension = $request->file('image')->getClientOriginalExtension();
+        // Filename to store
+        $fileNameToStore = 'produk_'.$filename.'_'.time().'.'.$extension;
+        // Upload Image
+        $request->file('image')->storeAs('public/images/tenant/'.auth()->user()->current_tenant_id,$fileNameToStore);
+
+        $pengeluaran = Pengeluaran::create([
+            'image' => $fileNameToStore,
+            'deskripsi_pengeluaran_id' => $request->deskripsi_pengeluaran_id,
+            'keterangan' => $request->keterangan,
+            'nominal' => $request->nominal,
+
+        ]);
         return response()->json('Data Berhasil di Simpan',200);
     }
 
